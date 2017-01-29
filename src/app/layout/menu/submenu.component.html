@@ -1,0 +1,53 @@
+<!--<div class="col-md-12">
+    <div class="col-md-4 list-group submenu">
+        <li *ngFor="let item of subNavList" 
+            on-mouseover="GetLevel3List(item.Id)"    
+            class="list-group-item no-border">
+            <a href="#">{{item.Name}}</a>
+        </li>
+    </div>
+    <div class="col-md-8 list-group">
+        <div class="col-md-6">
+            <li *ngFor="let subItem of level3List | slice:0:5; let i=index" 
+                class="list-group-item">
+                <a href="#">{{subItem.Name}} {{i}}</a>
+            </li>
+        </div>
+        <div class="col-md-6" *ngIf="level3List.length > 3">
+            <li *ngFor="let subItem of level3List | slice:5:10; let i=index" 
+                class="list-group-item">
+                <a href="#">{{subItem.Name}} {{i}}</a>
+            </li>
+        </div>
+    </div>
+</div>-->
+
+<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 bhoechie-tab-container">
+            <div class="col-lg-4 col-md-4 col-sm-3 col-xs-3 bhoechie-tab-menu">
+              <div class="list-group no-border">
+                <a *ngFor="let item of subNavList" routerLink="products" 
+                    class="list-group-item text-center no-border"
+                    on-mouseover="GetLevel3List(item)"
+                    [class.active]="selectedItem==item">
+                  {{item.Name}}
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bhoechie-tab">
+                <div class="bhoechie-tab-content active">
+                    <div class="col-md-6">
+                                <li *ngFor="let subItem of level3List | slice:0:5; let i=index" 
+                                    class="list-group-item no-border">
+                                    <a (click)="closeSubmenu()" routerLink="products" routerLinkActive="active">{{subItem.Name}}</a>
+                                </li>
+                    </div>
+                    <div class="col-md-6" *ngIf="level3List.length > 6">
+                                <li *ngFor="let subItem of level3List | slice:5:10; let i=index" 
+                                    class="list-group-item no-border">
+                                    <a (click)="closeSubmenu()" routerLink="products" routerLinkActive="active">{{subItem.Name}}</a>
+                                </li>
+                    </div>
+                </div>
+            </div>
+</div>
+        

@@ -1,0 +1,26 @@
+.full-width{
+    width:100%;
+}
+.site-title{
+    font-size: 32px;
+    font-weight: 800;
+    color: #fff;
+}
+.tag-line{
+    font-size: 14px;
+    font-weight: 500;
+    color: #394;
+    text-align: center;
+    text-transform: uppercase;
+}
+.email, .phone{
+    margin-top: 30px;
+}
+.headercls{
+    height: 125px;
+     background-color: #000;
+     color: #fff;
+}
+.headercls a{
+    text-decoration: none;
+}

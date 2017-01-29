@@ -1,0 +1,12 @@
+<!-- The overlay -->
+<div id="myNav" *ngIf="visible" class="overlay">
+
+  <!-- Button to close the overlay navigation -->
+  <a class="closebtn" (click)="closeModal()">&times;</a>
+
+  <!-- Overlay content -->
+  <div class="overlay-content">
+    <ng-content></ng-content>
+  </div>
+
+</div>
