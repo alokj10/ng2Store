@@ -22,6 +22,7 @@
 <router-outlet></router-outlet>
 
 <so-modal [(visible)]="showModal" (toggleVisibility)="submenu.clearMenu();closeSubMenu();">
-	<so-submenu #submenu [(parentCategoryId)]="selectedCategoryId"
+	<so-submenu #submenu  
+				[allCategories]="allCategories"
 				(onSubmenuClosed)="closeSubMenu()"></so-submenu>
 </so-modal>

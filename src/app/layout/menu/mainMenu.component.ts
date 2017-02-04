@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ICategory } from '../../model/category.interface';
 import { MenuService } from '../../services/menu.service';
+import { SubmenuComponent } from './submenu.component';
 
 @Component({
     selector: 'so-mainMenu',
@@ -10,11 +11,22 @@ import { MenuService } from '../../services/menu.service';
 export class MainMenuComponent{
 
     private _showModal: boolean = false;
-    public selectedCategoryId: number = 1;
+    public allCategories: ICategory[] = [];
+    public _selectedCategoryId: number = 1;
     public navList: ICategory[] = [];
 
+    @ViewChild(SubmenuComponent) submenuComponent:SubmenuComponent;
+
     constructor(private menuService: MenuService){
-        this.navList = this.menuService.getLevel1MenuItems();
+        this.menuService.getLevel1MenuItems()
+                        .then(categories => {
+                            this.allCategories = categories;
+                            this.setNavList(categories);
+                        });
+    }
+
+    setNavList(categories: ICategory[]){
+        this.navList = categories.filter(item => item.ParentId == 0);
     }
 
     set showModal(showModal: boolean){
@@ -25,15 +37,22 @@ export class MainMenuComponent{
         return this._showModal;
     }
 
+    set selectedCategoryId(selectedCategoryId: number){
+        this._selectedCategoryId = selectedCategoryId;
+    }
+
+    get selectedCategoryId(): number{
+        return this._selectedCategoryId;
+    }
+
     openSubMenu(level1Item: ICategory){
-        console.log('sub menu open');
         this.selectedCategoryId = level1Item.Id;
+        this.submenuComponent.parentCategoryId = this.selectedCategoryId;
         this.showModal = true;
         return false;
     }
 
     closeSubMenu(){
-        console.log('reset selected');
         this.selectedCategoryId = 0;
         this.showModal = false;
     }

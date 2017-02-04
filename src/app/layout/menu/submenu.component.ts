@@ -14,15 +14,15 @@ export class SubmenuComponent implements AfterViewInit{
     @Input() 
     set parentCategoryId(parentCategoryId: number){
         this._parentCategoryId = parentCategoryId;
-        this.subNavList = this.menuService.getLevel2Items(parentCategoryId);
+        this.setLevel2Items(parentCategoryId);
     }
+
+    @Input() allCategories: ICategory[];
 
     public onSubmenuClosed = new EventEmitter();
 
     public subNavList: ICategory[] = [];
     public level3List: ICategory[] = [];
-    public level3ListLeft: ICategory[] = [];
-    public level3ListRight: ICategory[] = [];
 
     constructor(private menuService: MenuService){
     }
@@ -31,9 +31,17 @@ export class SubmenuComponent implements AfterViewInit{
         return this._parentCategoryId;
     }
 
+    setLevel2Items(parentCategoryId: number){
+        this.subNavList = this.allCategories.filter(
+                item => item.ParentId == parentCategoryId);
+    }
+
+    setLevel3Items(parentCategoryId: number){
+        this.level3List = this.allCategories.filter(
+                item => item.ParentId == parentCategoryId);
+    }
+
     ngAfterViewInit(){
-        //let catItem = this.subNavList[0];
-        //this.GetLevel3List(catItem);
     }
 
     clearMenu(){
@@ -48,8 +56,7 @@ export class SubmenuComponent implements AfterViewInit{
     }
 
     GetLevel3List(categoryItem: ICategory){
-        this.level3List = this.menuService.getLevel3Items(categoryItem.Id);
+        this.setLevel3Items(categoryItem.Id);
         this.selectedItem = categoryItem;
-        // this.level3ListLeft = this.level3List.
     }
 }

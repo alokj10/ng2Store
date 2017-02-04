@@ -3,6 +3,6 @@ export interface IOffer{
     Name: string;
     Title: string;
     Disclaimer: string;
-    Conditions: string;
+    Conditions: string[];
     DiscountRate: number;
 }

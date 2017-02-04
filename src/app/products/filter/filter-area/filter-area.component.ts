@@ -1,8 +1,8 @@
 import { Component, AfterViewInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
-import { ContentHostDirective } from '../../directives/content-host.directive';
-import { CriteriaItem } from './criteria-item';
-import { CategoryFilterComponent } from './category-filter.component';
-import { CriteriaBaseComponent } from './criteria-base.component';
+import { ContentHostDirective } from '../../../directives/content-host.directive';
+import { CriteriaItem } from '../criteria-item';
+import { CategoryFilterComponent } from '../category-filter/category-filter.component';
+import { CriteriaBaseComponent } from '../criteria-base.component';
 
 @Component({
     selector: 'so-filter',

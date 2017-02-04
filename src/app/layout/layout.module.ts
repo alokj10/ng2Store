@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
+import { HttpModule } from '@angular/http';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from '../services/in-memory-data.service';
 
 
 import { HeaderComponent } from './header/header.component';
@@ -17,7 +20,9 @@ import { SubmenuComponent } from './menu/submenu.component';
     [ 
         CommonModule,
         SharedModule,
-        AppRoutingModule
+        AppRoutingModule,
+        HttpModule,
+        InMemoryWebApiModule.forRoot(InMemoryDataService)
     ],
     declarations:
     [

@@ -5,7 +5,7 @@ import { ProductListComponent } from './products/product-list.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 
 export const routes: Routes = [
-    { path:'products', component: ProductListComponent },
+    { path:'products/:name', component: ProductListComponent },
     { path: '', redirectTo: '**', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ]
