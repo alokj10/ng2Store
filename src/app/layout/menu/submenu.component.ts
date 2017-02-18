@@ -15,6 +15,10 @@ export class SubmenuComponent implements AfterViewInit{
     set parentCategoryId(parentCategoryId: number){
         this._parentCategoryId = parentCategoryId;
         this.setLevel2Items(parentCategoryId);
+        let defaultSelectedItems = this.subNavList.filter(x => x.Id === parentCategoryId);
+        if(this.subNavList.length > 0){
+            this.GetLevel3List(this.subNavList[0]);
+        }
     }
 
     @Input() allCategories: ICategory[];

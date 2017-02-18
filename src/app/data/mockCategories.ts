@@ -200,7 +200,7 @@ export const MockCategories: ICategory[] = [
     },
     {
         Id: 28,
-        Name: "Refrigerators",
+        Name: "Water Purifiers",
         ParentId: 2,
         Title: "All Electronics Devices with competitive rates",
         Description: "These are mobiles, tablets, laptops, smart tvs and much more"
@@ -239,14 +239,14 @@ export const MockCategories: ICategory[] = [
     ,
     {
         Id: 33,
-        Name: "Single Door",
+        Name: "RO purifiers",
         ParentId: 28,
         Title: "All Electronics Devices with competitive rates",
         Description: "These are mobiles, tablets, laptops, smart tvs and much more"
     },
     {
         Id: 34,
-        Name: "Double Door",
+        Name: "RO + UV purifiers",
         ParentId: 28,
         Title: "All Electronics Devices with competitive rates",
         Description: "These are mobiles, tablets, laptops, smart tvs and much more"

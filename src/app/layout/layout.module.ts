@@ -13,7 +13,11 @@ import { FooterComponent } from './footer/footer.component';
 import { SideBarComponent } from './sideBar/sideBar.component';
 import { MainMenuComponent } from './menu/mainMenu.component';
 import { SubmenuComponent } from './menu/submenu.component';
+import { CartComponent } from './cart/cart.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 // import { ModalComponent } from '../shared/modal/modal.component';
+
+import { CartService } from '../services/cart.service';
 
 @NgModule({
     imports:
@@ -30,7 +34,9 @@ import { SubmenuComponent } from './menu/submenu.component';
         FooterComponent,
         SideBarComponent,
         MainMenuComponent,
-        SubmenuComponent
+        SubmenuComponent,
+        CartComponent,
+        BreadcrumbComponent
     ],
     exports:
     [
@@ -39,7 +45,13 @@ import { SubmenuComponent } from './menu/submenu.component';
         SideBarComponent,
         MainMenuComponent,
         SubmenuComponent,
-        FormsModule
+        CartComponent,
+        FormsModule,
+        BreadcrumbComponent
+    ],
+    providers:
+    [
+        CartService
     ]
 })
 export class LayoutModule{

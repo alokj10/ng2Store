@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <so-tabs>
+                <!--<so-tab *ngFor="let tItem of cTabs" [tabTitle]="'tItem.tTitle'">
+                    <so-login [redirectUrl]="['/viewcart']" (onLogin)="onLogin($event)"></so-login>
+                </so-tab>-->
+            <so-tab step="1" [tabTitle]="'Log In'" [active]="loginActive">
+                <so-login [redirectUrl]="['deliveryAddress']" (onLogin)="onLogin($event)"></so-login>
+            </so-tab>
+            <so-tab step="2" tabTitle="Delivery Details"  [active]="deliveryActive">
+                <so-delivery-address (onSaveDeliveryAddress)="onSaveDeliveryAddress($event)"></so-delivery-address>
+            </so-tab>
+            <so-tab step="3" tabTitle="Order Summary" [active]="orderActive">
+                <so-order-summary (onSaveOrder)="onSaveOrder($event)"></so-order-summary>
+            </so-tab>
+            <so-tab step="4" tabTitle="Payment Mode" [active]="paymentActive">
+                <so-payment-method (onSave)="onSavePayment($event)"></so-payment-method>
+            </so-tab>
+        </so-tabs>
+    </div>
+</div>

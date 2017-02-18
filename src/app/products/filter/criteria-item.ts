@@ -1,4 +1,4 @@
-import { Type } from '@angular/core';
+import { Type, EventEmitter } from '@angular/core';
 
 export class CriteriaItem{
     

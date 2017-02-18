@@ -7,7 +7,7 @@ export class SiteInfoService{
          this.header = {
              brandName: 'Shopping Cart',
              tagLine: 'An Online Bazaar',
-             email: 'info@shoppingcart.com',
+             email: 'info@shoppers.com',
              phone: '+44 205 205 306'
          }
      }

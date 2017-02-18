@@ -1,18 +1,64 @@
 import { Injectable } from '@angular/core';
 import { CriteriaItem } from '../products/filter/criteria-item';
-import { CategoryFilterComponent } from '../products/filter/category-filter/category-filter.component';
 import { PriceFilterComponent } from '../products/filter/price-filter/price-filter.component';
+import { IFilterCriteria } from '../model/filterCriteria.interface';
+import { Subject } from 'rxjs/';
+import { MockProducts } from '../data/mockProducts';
+import { MockCategories } from '../data/mockCategories';
+import { MockOptions } from '../data/mockOptions';
+import { MockProductOptions } from '../data/mockProductOptions';
 
 @Injectable()
 export class FilterService{
 
-    getFilterComponents(categoryId: number): CriteriaItem[]{
-        let criterias: CriteriaItem[] = [];
-        let criteriaItem = new CriteriaItem(CategoryFilterComponent,{catId: categoryId});
-        criterias.push(criteriaItem); 
-        criteriaItem = new CriteriaItem(PriceFilterComponent,{catId: categoryId});
-        criterias.push(criteriaItem);
+    filterCriterias: IFilterCriteria[] = [];
+    private payLoad = new Subject<string[]>();
+    payload$ = this.payLoad.asObservable();
 
-        return criterias; 
+    getFilterComponents(categoryId: number): IFilterCriteria[]{
+        let products = MockProducts.filter(i => i.CategoryId == categoryId);
+        let productOptions: any[] = [];
+        MockProductOptions.map(item => {
+            if(products.filter(p => p.Id == item.ProductId).length > 0)
+            {
+                productOptions.push(item);
+            }
+        });
+        let optionValues: any[] = [];
+        MockOptions.map(item => {
+             let productOptionsFiltered = productOptions.filter(o => o.OptionId == item.Id);
+             if(productOptionsFiltered.length > 0)
+             {
+                 optionValues.push({
+                     categoryId: productOptionsFiltered[0].CategoryId,
+                     optionValue:  item
+                 });
+             }
+        });
+
+        optionValues.map(item => {
+            this.filterCriterias.push({
+                // CategoryId: item.categoryId,
+                Option_Id: item.optionValue.Id,
+                Option_Title: item.optionValue.OptionTitle,
+                Option_Style: item.optionValue.OptionStyle,
+                Option_Values: item.optionValue.OptionValues 
+            });
+         });
+         return this.filterCriterias;
+
+    }
+
+    changeFilterValues(values: string[]){
+        this.payLoad.next(values);
+    }
+
+    getCategoryName(categoryId: number): string{
+        let category = MockCategories.filter(x => x.Id === categoryId);
+        if(category.length > 0)
+        {
+            return category[0].Title;
+        }
+        return '';
     }
 }

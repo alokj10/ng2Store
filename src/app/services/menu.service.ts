@@ -19,7 +19,6 @@ export class MenuService{
     }
 
     constructor(private http: Http){
-        console.log('menu ser created');
     }
 
     private handleError(error: any): Promise<any>{

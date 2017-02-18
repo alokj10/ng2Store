@@ -1,0 +1,29 @@
+
+<ul class="nav navbar-nav navbar-right cart" *ngIf="cartService.isCartVisible">
+
+ <li class="dropdown">
+          <a (click)="toggleDropdown()" class="cart" data-toggle="dropdown" role="button" aria-expanded="false" style="color:#fff;"> 
+              <span class="glyphicon glyphicon-shopping-cart" ></span><span class="cart-text"> {{items}} - Items</span><span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-cart" role="menu" *ngIf="showDropdown">
+              <li *ngFor="let product of products">
+                  <span class="item">
+                    <span class="item-left">
+                        <!--<img src="../../../../public/images/1.png" alt="" />-->
+                        <span class="item-info">
+                            <span>{{product.Name}}</span>
+                            <span>{{product.SellingPrice}}</span>
+                        </span>
+                    </span>
+                    <span class="item-right">
+                        <button title="Remove Item" class="btn btn-xs btn-danger pull-right" (click)="removeItem(product)">x</button>
+                    </span>
+                </span>
+              </li>
+              <li class="divider"></li>
+              <li><a class="text-center" [routerLink]="['/viewcart']">{{viewMsg}}</a></li>
+          </ul>
+        </li>
+      
+
+</ul>

@@ -1,9 +1,43 @@
 <so-sidebar>
-    <so-filter></so-filter>
+    <so-filter [categoryId]="categoryId"></so-filter>
 </so-sidebar>
-<div class="col-md-8">
-    <h1>This is the shell content of product list</h1>
-    <div *ngFor="let product of products">
-        <h3>product.Name</h3>
-    </div>
+<div class="col-md-9">
+    	<!--<so-breadcrumb></so-breadcrumb>-->
+		<h3>{{categoryTitle}}</h3>
+		<hr>
+        <div *ngFor="let product of products">
+            <product-item #product_item>
+                <div class="col-md-4">
+                 <article class="col-item">
+        		<div class="photo">
+        			<div class="options">
+        				<button class="btn btn-default" type="submit" data-toggle="tooltip" data-placement="top" title="Add to wish list">
+        					<span class="glyphicon glyphicon-heart"></span>
+        				</button>
+        			</div>
+        			<div class="options-cart">
+        				<button class="btn btn-default" title="Add to cart" (click)="product_item.add_to_cart(product)">
+        					<span class="glyphicon glyphicon-shopping-cart"></span>
+        				</button>
+        			</div>
+        			<a (click)="product_item.go_to_detail(product)"> 
+						<img src="../../../public/images/1.png" class="img-responsive" 
+							alt="Product Image" /> 
+					</a>
+        		</div>
+        		<div class="info">
+        			<div class="row">
+        				<div class="price-details col-md-6">
+        					<p class="details">
+        						{{product.Title}}
+        					</p>
+        					<h1>{{product.Description}}</h1>
+        					<span class="price-new">&#8377;  {{product.SellingPrice}}</span>
+        				</div>
+        			</div>
+        		</div>
+        	</article>
+                </div>
+            </product-item>
+        </div>        
 </div>
