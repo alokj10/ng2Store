@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { SecurityModule } from '../security/security.module';
 import { ProductListComponent } from './product-list.component';
+import { ProductDetailComponent } from './product/prod_detail.component';
 import { ProductItemComponent } from './product/product-item.component';
 import { FilterAreaComponent } from './filter/filter-area//filter-area.component';
 import { CheckboxFilterComponent } from './filter/checkbox-filter/checkbox-filter.component';
@@ -31,6 +32,7 @@ import { PaymentMethodComponent } from './checkout/payment_method.component';
     declarations:[
         ProductListComponent,
         ProductItemComponent,
+        ProductDetailComponent,
         FilterAreaComponent,
         CheckboxFilterComponent,
         ContentHostDirective,

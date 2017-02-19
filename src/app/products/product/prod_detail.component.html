@@ -1,0 +1,37 @@
+<a class="btn btn-default" (click)="goBack()">Go Back</a>
+<div *ngIf="product">
+    <product-item #product_item>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <img src="{{imgUrl}}" class="image-container img-responsive" 
+                                        alt="Product Image" />
+                </div>
+                <div class="panel-footer clearfix">
+                    <button type="button" class="btn btn-primary pull-left" (click)="product_item.add_to_cart(product)">
+                        Add To Cart    <span class="glyphicon glyphicon-shopping-cart"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary pull-right" (click)="product_item.buy_now(product)">
+                        Buy Now    &#8377;
+                    </button>
+                </div>
+            </div> 
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>{{product.Title}}</h3>
+                </div>
+                <div class="panel-body">
+   					<span class="price-new">&#8377;  {{product.SellingPrice}}</span>
+                       <hr>
+                    <div class="list-group">
+                        <li *ngFor="let feature of product.Features" class="list-group-item no-border">
+                           <span class="tick glyphicon glyphicon-ok"></span>  {{feature}}
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </product-item>
+</div>

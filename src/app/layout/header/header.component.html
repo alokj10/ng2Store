@@ -1,17 +1,36 @@
 <div class="full-width headercls">
-    <div class="col-md-4">
-        <a href="/">
+    <div class="col-md-3">
+        <a [routerLink]="['/products']">
         <h2 class="site-title">{{siteInfoService.header.brandName}}</h2>
         <span class="tag-line text-center">{{siteInfoService.header.tagLine}}</span>
         </a>
     </div>
-    <div class="col-md-2">
-        <h4 class="email">{{siteInfoService.header.email}}</h4>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-3 contact">
+        <div class="clearfix">
+            <div class="pull-left">
+                <span class="glyphicon glyphicon-envelope"></span>
+                <h4 class="email">{{siteInfoService.header.email}}</h4>
+            </div>
+            <div class="pull-right">
+                <span class="glyphicon glyphicon-phone-alt"></span>
+                <h4 class="phone">{{siteInfoService.header.phone}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 menu">
+            <li>
+                <a [routerLink]="['/signup']">Signup</a>
+            </li>
+            <li>
+                <a [routerLink]="['/login']">Log In</a>
+            </li>
+            <li>
+                <a [routerLink]="['/track']">Track Order</a>
+            </li>
     </div>
     <div class="col-md-2">
-        <h4 class="phone">{{siteInfoService.header.phone}}</h4>
-    </div>
-    <div class="col-md-4">
           <so-cart></so-cart>  
     </div>
 

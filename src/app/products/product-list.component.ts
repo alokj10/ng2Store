@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilterAreaComponent } from './filter/filter-area/filter-area.component';
 import { IProduct } from '../model/product.interface';
@@ -19,10 +19,13 @@ export class ProductListComponent implements OnInit{
     filterSubscription: Subscription;
     @ViewChild(FilterAreaComponent) filterAreaComponent: FilterAreaComponent; 
     products: IProduct[];
+    imgUrl: string;
 
     constructor(private route: ActivatedRoute,
                 private productService: ProductService,
+                @Inject(Window)private win: Window,
                 private filterService: FilterService){
+        this.imgUrl = this.win + 'assets/5.png';
         this.products = MockProducts;
         this.filterSubscription = this.filterService
                                       .payload$

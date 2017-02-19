@@ -46,4 +46,10 @@ export class ProductItemComponent{
     add_to_cart(product: IProduct){
         this.cartService.add_to_cart(product);
     }
+
+    buy_now(product: IProduct){
+        this.cartService.add_to_cart(product);
+        this.router.navigate(['/checkout']);
+    }
+
 }

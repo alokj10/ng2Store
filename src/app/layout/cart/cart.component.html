@@ -1,15 +1,14 @@
-
 <ul class="nav navbar-nav navbar-right cart" *ngIf="cartService.isCartVisible">
 
- <li class="dropdown">
-          <a (click)="toggleDropdown()" class="cart" data-toggle="dropdown" role="button" aria-expanded="false" style="color:#fff;"> 
-              <span class="glyphicon glyphicon-shopping-cart" ></span><span class="cart-text"> {{items}} - Items</span><span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu dropdown-cart" role="menu" *ngIf="showDropdown">
+      <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="color:#fff;">
+              <span class="glyphicon glyphicon-shopping-cart" ></span><span class="cart-text"> {{items}} - Items</span>
+              <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu dropdown-cart">
               <li *ngFor="let product of products">
                   <span class="item">
                     <span class="item-left">
-                        <!--<img src="../../../../public/images/1.png" alt="" />-->
                         <span class="item-info">
                             <span>{{product.Name}}</span>
                             <span>{{product.SellingPrice}}</span>
@@ -23,7 +22,16 @@
               <li class="divider"></li>
               <li><a class="text-center" [routerLink]="['/viewcart']">{{viewMsg}}</a></li>
           </ul>
-        </li>
+      </div>
       
 
 </ul>
+<!--<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="#">HTML</a></li>
+      <li><a href="#">CSS</a></li>
+      <li><a href="#">JavaScript</a></li>
+    </ul>
+  </div>-->

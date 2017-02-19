@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SiteInfoService } from '../../services/siteInfo.service';
 
 @Component({
     selector: 'so-footer',
@@ -7,7 +8,6 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent{
 
-    constructor(){
-        
+constructor(public siteInfoService: SiteInfoService){
     }
 }

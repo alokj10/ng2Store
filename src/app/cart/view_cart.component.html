@@ -1,3 +1,4 @@
+<div class="container">
 <div class="alert alert-info clearfix" *ngIf="noItemsInCart">
     <p class="pull-left">There are no items in your cart.</p><br><br>
     <a class="btn btn-primary pull-right" [routerLink]="['/products']">Go ahead and shop mind-blowing items</a>
@@ -8,7 +9,7 @@
         <h3 class="pull-right">Order Total: <strong>{{totalAmount1 | currency:'INR'}}</strong></h3>
     </div>    
     <div class="list-group">
-        <li class="list-group-item" style="background:#ccc;color:#344;">
+        <li class="list-group-item" style="background:transparent;color:#000;">
             <div class="row">
                 <div class="col-md-4">
                     <h4>Item</h4>
@@ -60,4 +61,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

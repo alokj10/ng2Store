@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NgModule, enableProdMode, Provider } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { APP_BASE_HREF, Location } from '@angular/common';
 
 import { AppComponent } from './app.component';
 // import { AdvisoryComponent } from './temporary/advisory.component';
@@ -31,7 +32,9 @@ import { AuthenticationService } from './services/authentication.service';
   providers: [
     SiteInfoService,
     MenuService,
-    AuthenticationService
+    AuthenticationService,
+    // { provide: APP_BASE_HREF, useValue: window['_app_base'] || '/' },
+    { provide: Window, useValue: window['_app_base'] }
   ]
 })
 export class AppModule { }

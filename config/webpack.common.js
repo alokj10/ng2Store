@@ -25,8 +25,17 @@ module.exports = {
         loader: 'html'
       },
       {
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        loader: 'file?name=assets/[name].[hash].[ext]'
+        // test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        test: /\.(png|jpe?g|gif|svg|woff)$/,
+        loader: 'file?name=assets/[name].[ext]'
+        // loader: 'url',
+        // query: {
+        //   limit: 1000,
+        //   name: helpers.root('[name].[hash:7].[ext]')
+        // }
+      },
+      {
+        test: /\.(woff2?|ttf|eot|svg|ico)$/, loader: 'url-loader?limit=100000000000'
       },
       {
         test: /\.css$/,

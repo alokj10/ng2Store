@@ -19,8 +19,6 @@
 		</div>
 	</div>
 </nav>
-<router-outlet></router-outlet>
-
 <so-modal [(visible)]="showModal" (toggleVisibility)="submenu.clearMenu();closeSubMenu();">
 	<so-submenu #submenu  
 				[allCategories]="allCategories"

@@ -1,6 +1,11 @@
 .cart{
     margin-right:10%;
+    margin-top:10%;
     color: forestgreen !important;
+}
+.btn{
+ background-color: rgb(50,70,50) !important;
+border: 2px solid rgb(100,100,100) !important;
 }
 .cart-text{
     padding: 10px;
@@ -46,7 +51,4 @@ ul.dropdown-cart li .item-right{
 }
 ul.dropdown-cart li .item-right button{
     margin-top:14px;
-}
-.dropdown-menu{
-    display: block;
 }

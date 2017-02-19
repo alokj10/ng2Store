@@ -1,0 +1,9 @@
+.image-container{
+    border-radius: 7px;
+    border: 2px solid rgba(250,250,250, 0.9);
+    min-height: 400px;
+}
+
+.tick{
+    color: rgb(90,200,100) !important;
+}
