@@ -1,7 +1,8 @@
 .navbar{
   border-radius: 0px;
   margin-bottom: 0px;
-  min-height: 40px;
+  /*min-height: 40px;*/
+  min-height: 10%;
 }
 nav.navbar-webmaster {
           background-color: #000;

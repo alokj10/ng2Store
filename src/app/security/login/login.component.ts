@@ -32,6 +32,7 @@ export class LoginComponent{
             }
             else
             {
+                this.onLogin.emit(true);
                 this.router.navigate(['' + this.redirectUrl + '']);
             }
         }

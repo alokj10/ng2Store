@@ -1,3 +1,4 @@
+/*@media only screen and (max-width:1200px){*/
 .full-width{
     width:100%;
 }
@@ -22,7 +23,8 @@
     padding-left: 4px;
 }
 .headercls{
-    height: 90px;
+    /*height: 90px;*/
+    min-height: 90px;
           background-color: #1b242c;
  background-color: rgb(50,70,50);
      color: #fff;
@@ -47,4 +49,29 @@
     color: #fff;
     text-decoration: none;
     font-size: 14px;
+    cursor: pointer !important;
 }
+.dropdown-menu li a{
+    color: #344;
+}
+.dropdown-menu li{
+    float: none;
+    padding: 0px;
+}
+/*}
+/*
+@media only screen and (max-width:320px){
+    .headercls{
+        height: 140px;
+    }
+    .site-title{
+        font-size: 22px;
+    }
+    .tagline{
+        font-size: 10px;       
+    }
+    .contact{
+        font-size: 10px;
+        text-align: right; 
+    }
+}*/

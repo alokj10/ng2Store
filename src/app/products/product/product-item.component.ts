@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Inject } from '@angular/core';
 import { IProduct } from '../../model/product.interface';
 import { CartService } from '../../services/cart.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,6 +11,17 @@ export class ProductItemComponent{
 
     @Input() product: IProduct;
     @Input() products: IProduct[];
+
+    constructor(private router: Router,
+                private route: ActivatedRoute,
+                @Inject(Window)private win: Window,
+                private cartService: CartService){
+                            
+                }
+
+    get imgUrl(): string{
+        return this.win + this.product.ImgUrl;
+    }
 
     get subTotal(): number{
         return this.product.SellingPrice * this.product.Quantity;
@@ -34,10 +45,6 @@ export class ProductItemComponent{
     get itemsCount(){
         return this.products.length;
     }
-
-    constructor(private router: Router,
-                private route: ActivatedRoute,
-                private cartService: CartService){}
     
     go_to_detail(product: IProduct){
         this.router.navigate(['/detail', product.Id]);

@@ -10,6 +10,8 @@ import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
 import { ProductModule } from './products/product.module';
 import { SecurityModule } from './security/security.module';
+import { CartModule } from './cart/cart.module';
+import { AdminModule } from './admin/admin.module';
 
 import { SiteInfoService } from './services/siteInfo.service';
 import { MenuService } from './services/menu.service';
@@ -22,7 +24,9 @@ import { AuthenticationService } from './services/authentication.service';
     SharedModule,
     ProductModule,
     SecurityModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CartModule,
+    AdminModule
   ],
   declarations: [
     AppComponent

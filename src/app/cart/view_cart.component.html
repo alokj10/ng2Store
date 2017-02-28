@@ -28,8 +28,11 @@
         <li class="list-group-item" *ngFor="let product of products">
             <product-item #product_item [product]="product">
                 <div class="row">
-                    <div class="col-md-4">
-                        <span>{{product.Title}} -  {{product.Description}}</span>
+                    <div class="col-md-2">
+                        <img src="{{product.ImgUrl}}" />
+                    </div>
+                    <div class="col-md-2">
+                        <span>{{product.Title}}</span>
                     </div>
                     <div class="col-md-2 text-center">
                         <strong>

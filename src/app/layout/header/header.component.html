@@ -1,37 +1,64 @@
 <div class="full-width headercls">
-    <div class="col-md-3">
+    <div class="col-md-3 col-sm-6 col-xs-6">
         <a [routerLink]="['/products']">
         <h2 class="site-title">{{siteInfoService.header.brandName}}</h2>
         <span class="tag-line text-center">{{siteInfoService.header.tagLine}}</span>
         </a>
     </div>
-    <div class="col-md-1">
-    </div>
-    <div class="col-md-3 contact">
+    <!--<div class="col-md-1 col-sm-hidden col-xs-hidden">
+    </div>-->
+    <div class="col-md-4 col-sm-6 col-xs-6 contact">
         <div class="clearfix">
-            <div class="pull-left">
+            <div class="col-md-6 col-xs-12 pull-left">
                 <span class="glyphicon glyphicon-envelope"></span>
                 <h4 class="email">{{siteInfoService.header.email}}</h4>
             </div>
-            <div class="pull-right">
+            <div class="col-md-6 col-xs-12 pull-right">
                 <span class="glyphicon glyphicon-phone-alt"></span>
                 <h4 class="phone">{{siteInfoService.header.phone}}</h4>
             </div>
         </div>
     </div>
-    <div class="col-md-3 menu">
-            <li>
+    <div class="col-md-3 col-sm-6 col-xs-8 menu">
+            <li *ngIf="!isLoggedIn">
                 <a [routerLink]="['/signup']">Signup</a>
             </li>
-            <li>
-                <a [routerLink]="['/login']">Log In</a>
+            <li *ngIf="!isLoggedIn">
+                <a (click)="openLoginModal()">Log In</a>
             </li>
             <li>
                 <a [routerLink]="['/track']">Track Order</a>
             </li>
+            <li class="dropdown" *ngIf="isLoggedIn">
+                <a data-toggle="dropdown" class="dropdown-toggle">
+                    My Account <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a [routerLink]="['/account']">My Account</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/account']">Orders</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/account']">Reviews & Ratings</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/account']">Wish List</a>
+                    </li>
+                    <li>
+                        <a (click)="logout()">Logout</a>
+                    </li>
+                </ul>
+            </li>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 col-sm-6 col-xs-4">
           <so-cart></so-cart>  
     </div>
 
 </div>
+
+<so-modal [(visible)]="showLoginModal" (toggleVisibility)="closeLoginModal();">
+	<so-login [redirectUrl]="['products']" (onLogin)="onLogin($event)">
+	</so-login>
+</so-modal>

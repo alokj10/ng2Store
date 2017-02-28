@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
+import { SecurityModule } from '../security/security.module';
 import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from '../services/in-memory-data.service';
@@ -25,6 +26,7 @@ import { CartService } from '../services/cart.service';
         CommonModule,
         SharedModule,
         AppRoutingModule,
+        SecurityModule,
         HttpModule,
         InMemoryWebApiModule.forRoot(InMemoryDataService)
     ],

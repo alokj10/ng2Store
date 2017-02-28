@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductListComponent } from './products/product-list.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { ViewCartComponent } from './cart/view_cart.component';
-import { CheckoutComponent } from './products/checkout/checkout.component';
+import { CheckoutComponent } from './cart/checkout/checkout.component';
 import { ProductDetailComponent } from './products/product/prod_detail.component';
 
 export const routes: Routes = [

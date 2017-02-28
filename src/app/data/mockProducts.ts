@@ -6,15 +6,18 @@ export const MockProducts: IProduct[] = [
         Name: "IFB 8 kg Fully Automatic Front Load Washing Machine",
         CategoryId: 27,
         Title: "IFB 8 kg Fully Automatic Front Load Washing Machine",
-        Description: "IFB 8 kg Fully Automatic Front Load Washing Machine",
+        Description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. ",
         MarketPrice: 24,
         SellingPrice: 22,
         ModelNumber: "L100H",
-        Quantity: 4,
+        ImgUrl: 'assets/5.png',
+        Quantity: 1,
+        Available: 4,
         Features: ["Automatic","Power Saver","Compact in Size","Water Proof"],
         Specifications: [{Description:"spec1",Id:1,ProductId:1,SpecificationCategoryName:"Display",Title:"Title"}],
         Offers: [{Conditions:["str1","str2"],Disclaimer:"discl1",DiscountRate:20,Id:1,Name:"offer1",Title:"offer1"}],
-        Reviews: [{Id:1,ProductId:1,Comments:"comment1",RatingStars:5,ReviewedById:1}]
+        Reviews: [{Id:1,ProductId:1,Comments:"comment1",RatingStars:5,ReviewedById:1}],
+        Services: [{Id:1,Description:'30 Days Exchange Policy'},{Id:2,Description:'Cash on Delivery available'}]
     }
     ,
     {
@@ -22,15 +25,18 @@ export const MockProducts: IProduct[] = [
         Name: "IFB 7 kg Fully Automatic Front Load Washing Machine",
         CategoryId: 27,
         Title: "IFB 7 kg Fully Automatic Front Load Washing Machine",
-        Description: "IFB 7 kg Fully Automatic Front Load Washing Machine",
+        Description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. ",
         MarketPrice: 24000,
         SellingPrice: 22000,
         ModelNumber: "L100H",
-        Quantity: 4,
+        ImgUrl: 'assets/5.png',
+        Quantity: 1,
+        Available: 4,
         Features: ["Automatic","Power Saver","Compact in Size","Water Proof"],
         Specifications: [{Description:"spec1",Id:1,ProductId:1,SpecificationCategoryName:"Display",Title:"Title"}],
         Offers: [{Conditions:["str1","str2"],Disclaimer:"discl1",DiscountRate:20,Id:1,Name:"offer1",Title:"offer1"}],
-        Reviews: [{Id:1,ProductId:1,Comments:"comment1",RatingStars:5,ReviewedById:1}]
+        Reviews: [{Id:1,ProductId:1,Comments:"comment1",RatingStars:5,ReviewedById:1}],
+        Services: [{Id:1,Description:'30 Days Exchange Policy'},{Id:2,Description:'Cash on Delivery available'}]
     },
     {
         
@@ -38,15 +44,18 @@ export const MockProducts: IProduct[] = [
         Name: "IFB 8.5 kg Fully Automatic Front Load Washing Machine",
         CategoryId: 27,
         Title: "IFB 8.5 kg Fully Automatic Front Load Washing Machine",
-        Description: "IFB 8.5 kg Fully Automatic Front Load Washing Machine",
+        Description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. ",
         MarketPrice: 24000,
         SellingPrice: 22000,
         ModelNumber: "L100H",
-        Quantity: 4,
+        ImgUrl: 'assets/5.png',
+        Quantity: 1,
+        Available: 4,
         Features: ["Automatic","Power Saver","Compact in Size","Water Proof"],
         Specifications: [{Description:"Samsung",Id:1,ProductId:1,SpecificationCategoryName:"Display",Title:"Brand"}],
         Offers: [{Conditions:["str1","str2"],Disclaimer:"discl1",DiscountRate:20,Id:1,Name:"offer1",Title:"offer1"}],
-        Reviews: [{Id:1,ProductId:1,Comments:"comment1",RatingStars:5,ReviewedById:1}]
+        Reviews: [{Id:1,ProductId:1,Comments:"comment1",RatingStars:5,ReviewedById:1}],
+        Services: [{Id:1,Description:'30 Days Exchange Policy'},{Id:2,Description:'Cash on Delivery available'}]
     },
     {
         
@@ -54,44 +63,53 @@ export const MockProducts: IProduct[] = [
         Name: "IFB 6 kg Fully Automatic Front Load Washing Machine",
         CategoryId: 27,
         Title: "IFB 6 kg Fully Automatic Front Load Washing Machine",
-        Description: "IFB 6 kg Fully Automatic Front Load Washing Machine",
+        Description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. ",
         MarketPrice: 24000,
         SellingPrice: 22000,
         ModelNumber: "L100H",
-        Quantity: 4,
+        ImgUrl: 'assets/5.png',
+        Quantity: 1,
+        Available: 4,
         Features: ["Automatic","Power Saver","Compact in Size","Water Proof"],
         Specifications: [{Description:"Samsung",Id:1,ProductId:1,SpecificationCategoryName:"Display",Title:"Brand"}],
         Offers: [{Conditions:["str1","str2"],Disclaimer:"discl1",DiscountRate:20,Id:1,Name:"offer1",Title:"offer1"}],
-        Reviews: [{Id:1,ProductId:1,Comments:"comment1",RatingStars:5,ReviewedById:1}]
+        Reviews: [{Id:1,ProductId:1,Comments:"comment1",RatingStars:5,ReviewedById:1}],
+        Services: [{Id:1,Description:'30 Days Exchange Policy'},{Id:2,Description:'Cash on Delivery available'}]
     },
     {
         Id: 5,
         Name: "Blue Star Prisma RO+UV 4.2 L RO + UV Water Purifier  (Maroon)",
         CategoryId: 28,
         Title: "Blue Star Prisma RO+UV 4.2 L RO + UV Water Purifier  (Maroon)",
-        Description: "Blue Star Prisma RO+UV 4.2 L RO + UV Water Purifier  (Maroon)",
+        Description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. ",
         MarketPrice: 24900,
         SellingPrice: 18000,
         ModelNumber: "Prisma RO + UV",
-        Quantity: 2,
+        ImgUrl: 'assets/5.png',
+        Quantity: 1,
+        Available: 2,
         Features: ["Electrical & Storage","RO + UV","4l Capacity","ABS Tank Material"],
         Specifications: [{Description:"spec1",Id:1,ProductId:1,SpecificationCategoryName:"Display",Title:"Title"}],
         Offers: [{Conditions:["str1","str2"],Disclaimer:"discl1",DiscountRate:20,Id:1,Name:"offer1",Title:"offer1"}],
-        Reviews: [{Id:1,ProductId:1,Comments:"comment1",RatingStars:5,ReviewedById:1}]
+        Reviews: [{Id:1,ProductId:1,Comments:"comment1",RatingStars:5,ReviewedById:1}],
+        Services: [{Id:1,Description:'30 Days Exchange Policy'},{Id:2,Description:'Cash on Delivery available'}]
     },
     {
         Id: 6,
         Name: "Kent Ace+ 7 L RO + UF Water Purifier  (White, Blue)",
         CategoryId: 28,
         Title: "Kent Ace+ 7 L RO + UF Water Purifier  (White, Blue)",
-        Description: "Kent Ace+ 7 L RO + UF Water Purifier  (White, Blue)",
+        Description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. ",
         MarketPrice: 24900,
         SellingPrice: 18000,
         ModelNumber: "Kent RO + UF",
-        Quantity: 2,
+        ImgUrl: 'assets/5.png',
+        Quantity: 1,
+        Available: 2,
         Features: ["Electrical & Storage","RO + UF","4l Capacity","ABS Tank Material"],
         Specifications: [{Description:"spec1",Id:1,ProductId:1,SpecificationCategoryName:"Display",Title:"Title"}],
         Offers: [{Conditions:["str1","str2"],Disclaimer:"discl1",DiscountRate:20,Id:1,Name:"offer1",Title:"offer1"}],
-        Reviews: [{Id:1,ProductId:1,Comments:"comment1",RatingStars:5,ReviewedById:1}]
+        Reviews: [{Id:1,ProductId:1,Comments:"comment1",RatingStars:5,ReviewedById:1}],
+        Services: [{Id:1,Description:'30 Days Exchange Policy'},{Id:2,Description:'Cash on Delivery available'}]
     }
 ]

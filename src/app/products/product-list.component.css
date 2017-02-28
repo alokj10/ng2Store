@@ -1,3 +1,10 @@
+.list-group-item{
+  padding: 2px 4px;
+}
+.tick{
+  font-weight: 200px;
+  color: rgb(30,200,100);
+}
 /* Animation.css*/
 .box-item{
     width: 300px;
@@ -78,11 +85,9 @@
   margin-bottom: 0px;
   font-size:12px;
 }
-.col-item .price-details span {
-  float:right;
-}
 .col-item .price-details .price-new {
-  font-size:16px;
+  font-size:18px;
+  font-weight: 600;
 }
 .col-item .price-details .price-old {
   font-size:18px;
@@ -127,4 +132,11 @@
 }
 .col-item .btn-details a:first-child {
   margin-right:12px;
+}
+
+.badge{
+  background-color: rgb(20,170,10);
+  padding: 5px;
+  font-size: 14px;
+  letter-spacing: 1.9px;
 }

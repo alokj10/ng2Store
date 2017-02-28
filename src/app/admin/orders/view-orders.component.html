@@ -1,0 +1,38 @@
+<div class="panel panel-default">
+    <div class="list-group">
+        <li class="list-group-item">
+            <div class="col-md-2">
+                <h4>Ordered On</h4>
+            </div>
+            <div class="col-md-2">
+                <h4>Customer</h4>
+            </div>
+            <div class="col-md-2">
+                <h4>Total Amount</h4>
+            </div>
+            <div class="col-md-2">
+                <h4>Seller</h4>
+            </div>
+            <div class="col-md-2">
+                <h4>Status</h4>
+            </div>
+        </li>
+        <li *ngFor="let order_item of order_items" class="list-group-item">
+            <div class="col-md-2">
+                <span>{{order_item.OrderDate}}</span>
+            </div>
+            <div class="col-md-2">
+                <span>{{order_item.CustomerName}}</span>
+            </div>
+            <div class="col-md-2">
+                <span>{{order_item.OrderTotal}}</span>
+            </div>
+            <div class="col-md-2">
+                <span>{{order_item.SellerName}}</span>
+            </div>
+            <div class="col-md-2">
+                <span>{{order_item.OrderStatus}}</span>
+            </div>
+        </li>
+    </div>
+</div>

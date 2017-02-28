@@ -21,7 +21,7 @@
         				</button>
         			</div>
         			<a (click)="product_item.go_to_detail(product)"> 
-						<img src="{{imgUrl}}" class="img-responsive" 
+						<img src="{{product.ImgUrl}}" class="img-responsive" 
 							alt="Product Image" /> 
 					</a>
         		</div>
@@ -31,8 +31,18 @@
         					<p class="details">
         						{{product.Title}}
         					</p>
-        					<h1>{{product.Description}}</h1>
-        					<span class="price-new">&#8377;  {{product.SellingPrice}}</span>
+							<p class="vote"><span class="badge">4.5 ★</span> 2400 Ratings & 1500 Reviews </p>
+							<div class="row">
+								<div class="col-md-8">
+									<li *ngFor="let feature of product.Features" class="list-group-item no-border features" 
+												title="{{feature}}">
+												<span class="tick glyphicon glyphicon-ok"></span>  {{feature}}
+									</li>
+								</div>
+								<div class="col-md-4">
+									<span class="price-new">&#8377;  {{product.SellingPrice}}</span>
+								</div>
+							</div>
         				</div>
         			</div>
         		</div>
