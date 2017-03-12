@@ -1,6 +1,6 @@
 export interface IOrder{
     Id: number;
-    OrderDate: Date;
+    OrderDate: string;
     OrderStatus: string;
     OrderTotal: number;
     CustomerId: number;

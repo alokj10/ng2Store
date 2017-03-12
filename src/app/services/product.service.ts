@@ -3,31 +3,44 @@ import { Headers, Http, Response } from '@angular/http';
 import { IProduct } from '../model/product.interface';
 import { Observable} from 'rxjs';
 import { MockProducts } from '../data/mockProducts';
+import { ConfigSettings } from './configSettings.service';
 
 @Injectable()
 export class ProductService{
 
-    private apiUrl = 'api/products';
+    private apiUrl = '';
     private cartItems: IProduct[] = [];
 
-    constructor(private http: Http){
+    constructor(private http: Http,
+                private config: ConfigSettings){
+        this.apiUrl = this.config.apiUrl;
     }
 
-    private handleError(error: any): Promise<any>{
+    private handleError(error: any): Observable<any>{
         console.error('An error occurred', error);
-        return Promise.reject(error.message || error);
+        return Observable.throw(error.json().error || 'server error');
     }
 
-    getProducts(): Promise<IProduct[]>{
-        return this.http.get(this.apiUrl)
-                   .toPromise()
-                   .then(response => response.json().data as IProduct[])
+    getProducts(): Observable<IProduct[]>{
+        let url = this.apiUrl + 'api/products';
+        return this.http.get(url)
+                   .map((res: Response) => res.json() as IProduct[])
                    .catch(this.handleError);
     }
 
-    getProduct(id: number){
-        return Promise.resolve(this.getProducts().then(products => products.find(product => product.Id === id)));
-    }
+    // addProduct(): Promise<IProduct>{
+    //     return this.http.post(this.apiUrl + 'api/products')
+    //                .toPromise()
+    //                .then(response => response.json().data as IProduct)
+    //                .catch(this.handleError);
+    // }
+
+    // getProduct(id: number){
+    //     return Promise.resolve(this.getProducts()
+    //                                .then(products => 
+    //                                     products.find(product => product.Id === id)
+    //                                     ));
+    // }
     
     add_to_user_cart(product: IProduct){
         console.log("adding to cart - 1");

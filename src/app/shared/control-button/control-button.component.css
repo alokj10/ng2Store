@@ -1,0 +1,17 @@
+li{
+    list-style: none;
+    float: left;
+    margin-left: 10px;
+    transition: 0.3s ease-in-out;
+    border: none;
+}
+
+li button{
+    border: none;
+}
+
+li button:hover{
+    background: rgb(50, 100, 250);
+    color: rgb(255,255,255);
+    border: none;
+}

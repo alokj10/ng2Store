@@ -11,6 +11,7 @@ import { CheckboxFilterComponent } from './filter/checkbox-filter/checkbox-filte
 import { ContentHostDirective } from '../directives/content-host.directive';
 import { ProductService } from '../services/product.service';
 import { FilterService } from '../services/filter.service';
+import { LocationService } from '../services/location.service';
 import { ViewCartComponent } from '../cart/view_cart.component';
 import { AddReviewComponent } from './review/add-review.component';
 import { RateProductComponent } from './review/rate-product.component';
@@ -41,7 +42,7 @@ import { AppRoutingModule } from '../app-routing.module';
         ContentHostDirective
     ],
     entryComponents: [ CheckboxFilterComponent ],
-    providers: [ ProductService, FilterService ]
+    providers: [ ProductService, FilterService, LocationService ]
 })
 export class ProductModule{
 

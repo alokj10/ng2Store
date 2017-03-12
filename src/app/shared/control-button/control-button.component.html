@@ -1,0 +1,7 @@
+<div class="panel panel-default no-border clearfix">
+    <div class="panel-body no-border pull-right">
+        <li *ngFor="let control of controls">
+            <button (click)="navigate(control.navigateUrl)" type="button" class="btn btn-default">{{control.label}}</button>
+        </li>
+    </div>
+</div>

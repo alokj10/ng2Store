@@ -23,4 +23,10 @@ export class OrderService{
                    .then(response => response.json().data as IOrder[])
                    .catch(this.handleError);
     }
+
+    // getOrderById(id: number): IOrder{
+    //   return this.getOrders().then(orders => orders.find(order => order.Id === id));
+
+    // }
+
 }

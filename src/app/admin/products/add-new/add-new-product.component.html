@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <so-tabs>
+            <so-tab step="1" [tabTitle]="'Basic Info'" [active]="infoActive">
+                <so-basic-info></so-basic-info>
+            </so-tab>
+            <so-tab step="2" tabTitle="Features"  [active]="featuresActive">
+                <so-add-feature></so-add-feature>
+            </so-tab>
+            <so-tab step="3" tabTitle="Images" [active]="imagesActive">
+                <so-add-image></so-add-image>
+            </so-tab>
+        </so-tabs>
+    </div>
+</div>

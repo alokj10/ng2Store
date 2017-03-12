@@ -1,0 +1,20 @@
+<div class="container">
+    <so-control-buttons [(controls)]="controls"></so-control-buttons>
+<ul>
+    <li *ngFor="let product of product_items">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>{{product.title}}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-3">
+                    <span class="price-new">&#8377;  {{product.sellingPrice}}</span>
+                </div>
+            </div>
+            <div class="panel-footer clearfix">
+                <button type="button" class="btn btn-default pull-left">Edit</button>
+            </div>
+        </div>
+    </li>
+</ul>
+</div>

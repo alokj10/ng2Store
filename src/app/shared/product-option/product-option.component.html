@@ -1,0 +1,50 @@
+<div class="option-container">
+    <div *ngIf="isAdded" class="row">
+        <div class="col-md-2">
+            <span *ngIf="isAdded">{{optionItem.name}}</span>
+        </div>
+        <div class="col-md-3">
+            <span >{{optionItem.label}}</span>
+        </div>
+        <div class="col-md-2">
+            <span >{{optionItem.type}}</span>
+        </div>
+        <div class="col-md-3">
+            <span >{{optionItem.options[0]}}</span>
+        </div>
+        <div class="col-md-2 clearfix">
+            <button (click)="optionRemoved()" type="button" class="btn btn-danger pull-right">Remove</button>
+        </div>
+    </div>
+    <div *ngIf="!isAdded" class="row">
+        <div class="col-md-2">
+                <input *ngIf="!isAdded" type="text" class="form-control"
+                name="name" 
+                id="inputName" placeholder="Name" [(ngModel)]="optionItem.name"/>
+        </div>
+        <div class="col-md-3">
+                <input *ngIf="!isAdded" type="text" class="form-control" 
+                name="label" 
+                id="inputLabel" placeholder="Label"  [(ngModel)]="optionItem.label"/>
+        </div>
+        <div class="col-md-2">
+                <select *ngIf="!isAdded" class="form-control" id="inputType"
+                name="type" 
+                [(ngModel)]="optionItem.type">
+                    <option *ngFor="let type of types">{{type}}</option>
+                </select>
+        </div>
+        <div class="col-md-3">
+                <input *ngIf="!isAdded" type="text" class="form-control" 
+                id="inputOptions" placeholder="Comma separated options"
+                name="options" 
+                [(ngModel)]="optionItem.options"/>
+        </div>
+        <div class="col-md-2 clearfix">
+             <button (click)="optionAdded()" type="button" class="btn btn-success pull-right">
+                 Add
+             </button>
+        </div>
+        
+    </div>
+</div>

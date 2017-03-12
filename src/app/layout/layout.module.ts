@@ -5,8 +5,8 @@ import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { SecurityModule } from '../security/security.module';
 import { HttpModule } from '@angular/http';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from '../services/in-memory-data.service';
+// import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService }  from '../services/in-memory-data.service';
 
 
 import { HeaderComponent } from './header/header.component';
@@ -28,7 +28,7 @@ import { CartService } from '../services/cart.service';
         AppRoutingModule,
         SecurityModule,
         HttpModule,
-        InMemoryWebApiModule.forRoot(InMemoryDataService)
+        // InMemoryWebApiModule.forRoot(InMemoryDataService)
     ],
     declarations:
     [

@@ -1,19 +1,31 @@
 import { Injectable } from '@angular/core';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
+import { Subject } from 'rxjs/';
+import { Observable} from 'rxjs';
+
 import { CriteriaItem } from '../products/filter/criteria-item';
 import { PriceFilterComponent } from '../products/filter/price-filter/price-filter.component';
 import { IFilterCriteria } from '../model/filterCriteria.interface';
-import { Subject } from 'rxjs/';
 import { MockProducts } from '../data/mockProducts';
 import { MockCategories } from '../data/mockCategories';
 import { MockOptions } from '../data/mockOptions';
 import { MockProductOptions } from '../data/mockProductOptions';
+import { ConfigSettings } from './configSettings.service';
 
 @Injectable()
 export class FilterService{
 
+    private apiUrl = '';
     filterCriterias: IFilterCriteria[] = [];
     private payLoad = new Subject<string[]>();
     payload$ = this.payLoad.asObservable();
+    private payloadCategoryAdded = new Subject();
+    payloadCategoryAdded$ = this.payloadCategoryAdded.asObservable();
+
+    constructor(private http: Http,
+                private config: ConfigSettings){
+        this.apiUrl = this.config.apiUrl;
+    }
 
     getFilterComponents(categoryId: number): IFilterCriteria[]{
         let products = MockProducts.filter(i => i.CategoryId == categoryId);
@@ -61,4 +73,32 @@ export class FilterService{
         }
         return '';
     }
+
+    addCategory(data: any): Observable<any>{
+        let url = this.apiUrl + 'api/categories';
+        console.log('url - ' + url);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        
+                return this.http.post(url,data, options)
+                        .map((res: Response) => res.json())
+                        .catch(this.handleError);
+    }
+
+    categoryAdded(){
+        this.payloadCategoryAdded.next();
+    }
+
+    getCategories(): Observable<any>{
+        let url = this.apiUrl + 'api/categories';
+        return this.http.get(url)
+                        .map((res: Response) => res.json())
+                        .catch(this.handleError);
+    }
+
+    private handleError(error: any): Observable<any>{
+        console.error('An error occurred', error);
+        return Observable.throw(error.json().error || 'server error');
+    }
+
 }

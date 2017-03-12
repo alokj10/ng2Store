@@ -25,13 +25,18 @@ Referred from http://juristr.com/blog/2016/02/learning-ng2-creating-tab-componen
       .active{
         border-top: 14px solid #394;
       }
+      .active .badge{
+        background: #394;
+      }
     </style>
+    <div class="container">
     <ul class="nav">
       <li *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab.active" class="itemTab">
         <h3><span class="badge"><h4>{{tab.step}}</h4></span>  <strong>{{tab.title}}</strong></h3>
       </li>
     </ul>
     <ng-content></ng-content>
+    </div>
   `,
 })
 export class TabsComponent implements AfterContentInit {

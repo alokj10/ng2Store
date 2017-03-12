@@ -1,38 +1,53 @@
+<div class="container">
 <div class="panel panel-default">
-    <div class="list-group">
+    <div class="panel-heading">
+        <h3>Recent Orders</h3>
+    </div>
+    <ul class="list-group">
         <li class="list-group-item">
-            <div class="col-md-2">
-                <h4>Ordered On</h4>
-            </div>
-            <div class="col-md-2">
-                <h4>Customer</h4>
-            </div>
-            <div class="col-md-2">
-                <h4>Total Amount</h4>
-            </div>
-            <div class="col-md-2">
-                <h4>Seller</h4>
-            </div>
-            <div class="col-md-2">
-                <h4>Status</h4>
+            <div class="row">
+                <div class="col-md-2">
+                    <h4>Ordered On</h4>
+                </div>
+                <div class="col-md-2">
+                    <h4>Customer</h4>
+                </div>
+                <div class="col-md-2">
+                    <h4>Total Amount</h4>
+                </div>
+                <div class="col-md-2">
+                    <h4>Seller</h4>
+                </div>
+                <div class="col-md-2">
+                    <h4>Status</h4>
+                </div>
+                <div class="col-md-2">
+                    
+                </div>
             </div>
         </li>
         <li *ngFor="let order_item of order_items" class="list-group-item">
-            <div class="col-md-2">
-                <span>{{order_item.OrderDate}}</span>
-            </div>
-            <div class="col-md-2">
-                <span>{{order_item.CustomerName}}</span>
-            </div>
-            <div class="col-md-2">
-                <span>{{order_item.OrderTotal}}</span>
-            </div>
-            <div class="col-md-2">
-                <span>{{order_item.SellerName}}</span>
-            </div>
-            <div class="col-md-2">
-                <span>{{order_item.OrderStatus}}</span>
+            <div class="row">
+                <div class="col-md-2">
+                    <p class="grid-col">{{order_item.OrderDate}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p class="grid-col">{{order_item.CustomerName}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p class="grid-col">{{order_item.OrderTotal}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p class="grid-col">{{order_item.SellerName}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p class="grid-col">{{order_item.OrderStatus}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p class="grid-col">{{order_item.OrderStatus}}</p>
+                </div>
             </div>
         </li>
-    </div>
+    </ul>
+</div>
 </div>

@@ -18,11 +18,11 @@ export class MainMenuComponent{
     @ViewChild(SubmenuComponent) submenuComponent:SubmenuComponent;
 
     constructor(private menuService: MenuService){
-        this.menuService.getLevel1MenuItems()
+        /*this.menuService.getLevel1MenuItems()
                         .then(categories => {
                             this.allCategories = categories;
                             this.setNavList(categories);
-                        });
+                        });*/
     }
 
     setNavList(categories: ICategory[]){

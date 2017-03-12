@@ -18,7 +18,7 @@ export class ProductListComponent implements OnInit{
     categoryTitle: string;
     filterSubscription: Subscription;
     @ViewChild(FilterAreaComponent) filterAreaComponent: FilterAreaComponent; 
-    products: IProduct[];
+    products: any[];
     imgUrl: string;
 
     constructor(private route: ActivatedRoute,
@@ -26,7 +26,6 @@ export class ProductListComponent implements OnInit{
                 @Inject(Window)private win: Window,
                 private filterService: FilterService){
         this.imgUrl = this.win + 'assets/5.png';
-        this.products = MockProducts;
         this.filterSubscription = this.filterService
                                       .payload$
                                       .subscribe(i => 
@@ -45,10 +44,20 @@ export class ProductListComponent implements OnInit{
     }
 
     populateProducts(){
-        this.products = MockProducts.filter(x => x.CategoryId === this.categoryId);
-        if(this.products.length === 0){
-            this.products = MockProducts;
-        }
+        let products = this.productService.getProducts()
+                            .subscribe(
+                                products => {
+                                    console.log(products[0]);
+                                    this.products = products
+                                },
+                                err => {
+                                    console.log(err);
+                                }
+                            );
+        // this.products = MockProducts.filter(x => x.CategoryId === this.categoryId);
+        // if(this.products.length === 0){
+        //     this.products = MockProducts;
+        // }
     }
 
     setCategoryTitle(){
