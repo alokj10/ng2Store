@@ -1,3 +1,6 @@
 .no-border{
     border: none;
 }
+body{
+    overflow-x: hidden;
+}

@@ -1,7 +1,8 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { ProductOptionItem } from '../../../shared/product-option/product-option.interface';
 
 import { FilterService } from '../../../services/filter.service';
+import { ProductService } from '../../../services/product.service';
 
 @Component({
     selector:   'so-basic-info',
@@ -14,15 +15,19 @@ export class ProductBasicInfoComponent{
     options: any[];
     savedOptions: any[];
     categories: any[] = [];
+    model: any;
+    @Output() onBasicSubmit = new EventEmitter<boolean>();
 
-    constructor(private filterService: FilterService){
+    constructor(private filterService: FilterService,
+                private productService: ProductService){
         this.options = [];
         this.savedOptions = [];
 
         this.defaultOptionItem = {};
 
         this.options.push(this.defaultOptionItem);
-        
+        this.model = {};
+        // this.model.options = [];
         this.populateCategories();
     }
 
@@ -55,4 +60,17 @@ export class ProductBasicInfoComponent{
         this.savedOptions.slice(index,1);
     }
 
+    submitBasicInfoForm(){
+        this.productService.saveProduct(this.model).subscribe(
+            cats => {
+                this.categories = cats;
+                let productId = cats[0].id;
+                console.log('prod returned - ' + productId);
+                this.onBasicSubmit.emit(productId);
+            },
+            err => {
+                console.log('error returned - ' + err);
+            }
+        )
+    }
 }

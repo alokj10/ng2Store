@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { FilterService } from '../../../services/filter.service';
 
@@ -7,6 +7,7 @@ import { FilterService } from '../../../services/filter.service';
     templateUrl:    './add-image.component.html'
 })
 export class AddImageComponent{
+    @Input()productId: number;
     constructor(){
         
     }

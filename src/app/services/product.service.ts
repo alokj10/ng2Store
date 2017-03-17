@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import { IProduct } from '../model/product.interface';
 import { Observable} from 'rxjs';
 import { MockProducts } from '../data/mockProducts';
@@ -28,12 +28,36 @@ export class ProductService{
                    .catch(this.handleError);
     }
 
-    // addProduct(): Promise<IProduct>{
-    //     return this.http.post(this.apiUrl + 'api/products')
-    //                .toPromise()
-    //                .then(response => response.json().data as IProduct)
-    //                .catch(this.handleError);
-    // }
+    saveProduct(data: any): Observable<any>{
+        data = JSON.stringify(data);
+        console.log('post - ' + data);
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        
+        return this.http.post(this.apiUrl + 'api/products', data, options)
+                   .map((res: Response) => res.json())
+                   .catch(this.handleError);
+    }
+
+    getFeatures(productId: number){
+        let url = this.apiUrl + 'api/features/' + productId;
+        return this.http.get(url)
+                        .map((res: Response) => res.json())
+                        .catch(this.handleError);        
+    }
+
+    saveProductFeature(data: any): Observable<any>{
+        data = JSON.stringify(data);
+        console.log('feature post - ' + data);
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        
+        return this.http.post(this.apiUrl + 'api/features', data, options)
+                   .map((res: Response) => res.json())
+                   .catch(this.handleError);
+    }
 
     // getProduct(id: number){
     //     return Promise.resolve(this.getProducts()

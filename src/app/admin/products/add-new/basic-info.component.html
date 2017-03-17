@@ -1,4 +1,4 @@
-    <form>
+    <form #f="ngForm" (ngSubmit)="submitBasicInfoForm()">
         <div class="panel panel-default">
                 <div class="panel-heading">
                     <h2>New Product</h2>
@@ -6,13 +6,15 @@
                 <div class="panel-body">
                         <div class="form-group">
                             <label for="inputTitle">Product Title</label>
-                            <input type="text" class="form-control" id="inputTitle" placeholder="Product Title">
+                            <input type="text" class="form-control" id="inputTitle" 
+                            name="title" [(ngModel)]="model.title" placeholder="Product Title">
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="inputCategory">Product Category</label>
-                                    <select class="form-control" id="inputCategory">
+                                    <select name="category" [(ngModel)]="model.category" 
+                                    class="form-control" id="inputCategory">
                                         <option *ngFor="let cat of categories">
                                             {{cat.title}}
                                         </option>
@@ -22,7 +24,9 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="inputTag">Tags</label>
-                                    <input type="text" class="form-control" id="inputTag" placeholder="Space separated tags">
+                                    <input type="text" class="form-control" 
+                                    name="tags" [(ngModel)]="model.tags"
+                                    id="inputTag" placeholder="Space separated tags">
                                 </div>
                             </div>
                         </div>
@@ -30,23 +34,28 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="inputPrice">Price</label>
-                                    <input type="number" class="form-control" id="inputPrice">
+                                    <input type="number" 
+                                    name="sell_price" [(ngModel)]="model.sell_price"
+                                    class="form-control" id="inputPrice">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="inputStock">Stock Quantity</label>
-                                    <input type="number" class="form-control" id="inputStock">
+                                    <input type="number" class="form-control" 
+                                    name="stock" [(ngModel)]="model.stock_quantity" id="inputStock">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputDescription">Product Description</label>
-                            <textarea row="100" class="form-control" id="inputDescription" placeholder="Product Description"></textarea>
+                            <textarea row="100" class="form-control" 
+                            name="description" [(ngModel)]="model.description"
+                            id="inputDescription" placeholder="Product Description"></textarea>
                         </div>
                         <div class="form-group">
                             <label>Product Options</label>
-                            <div *ngFor="let item of options | reverse">
+                            <div *ngFor="let item of options | reverse"> 
                                     <so-product-option
                                             (optionAddEvent)="optionAdded(item)"
                                             (optionRemoveEvent)="optionRemoved(item)">
@@ -55,7 +64,10 @@
                         </div>
                 </div>
                 <div class="panel-footer clearfix">
-                    <button type="button" class="btn btn-primary pull-right">Add Product</button>
+                    <button type="submit" 
+                    class="btn btn-primary pull-right">
+                        Submit Product
+                    </button>
                 </div>
         </div>
     </form>

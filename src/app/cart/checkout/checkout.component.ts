@@ -15,8 +15,6 @@ export class CheckoutComponent implements OnInit{
     private tItem: TabComponent;
 
     constructor(private authenticationService: AuthenticationService){
-        //   console.log('tabs count: ' + this.ctabs.tabs.length);
-        // this.setTabActive(this.loginActive);
         this.setTabActive('login');
      }
 
@@ -35,26 +33,6 @@ export class CheckoutComponent implements OnInit{
      orderActive: boolean;
      paymentActive: boolean;
 
-    //  ngAfterContentInit(){
-    //     console.log('checkout constructor');
-    //     this.AddTab(1, "Log In");
-    //     this.AddTab(2, "Delivery Details");
-    //     this.AddTab(3, "Order Summary");
-    //     this.AddTab(4, "Payment Method");
-    //     console.log('length: ' + this.ctabs.length);
-    //  }
-
-    // ngOnInit(){
-        
-    // }
-
-    // AddTab(tId, tTitle){
-    //     // this.tItem = {tabId: tId, tabTitle: tTitle};
-    //     this.tItem = {active: false,title: tTitle};
-    //     // this.tItem.tabId = tabId;
-    //     // this.tItem.tabTitle = tabTitle;
-    //     this.ctabs.push(this.tItem);
-    // }
 
     setTabActive(tab: string){
         this.loginActive = false;

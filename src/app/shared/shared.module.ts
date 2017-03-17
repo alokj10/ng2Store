@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
+import { Routes, RouterModule } from '@angular/router';
 
 import { ModalComponent } from './modal/modal.component';
 import { CarouselComponent } from './carousel/carousel.component';
@@ -10,6 +11,7 @@ import { TabsComponent } from './tabs/tabs.component';
 import { ProductItemComponent } from '../products/product/product-item.component';
 import { ControlButtonComponent } from './control-button/control-button.component';
 import { ProductOptionsComponent } from './product-option/product-option.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
 
 import { ReverseSortPipe } from './pipes/reverse-sort.pipe';
 
@@ -18,7 +20,8 @@ import { ReverseSortPipe } from './pipes/reverse-sort.pipe';
         CommonModule,
         FormsModule,
         HttpModule,
-        JsonpModule
+        JsonpModule,
+        RouterModule
     ],
     declarations:[
         ModalComponent,
@@ -28,7 +31,8 @@ import { ReverseSortPipe } from './pipes/reverse-sort.pipe';
         TabsComponent,
         ControlButtonComponent,
         ProductOptionsComponent,
-        ReverseSortPipe
+        ReverseSortPipe,
+        SideMenuComponent
     ],
     exports:[
         CommonModule,
@@ -40,7 +44,8 @@ import { ReverseSortPipe } from './pipes/reverse-sort.pipe';
         ProductItemComponent,
         ControlButtonComponent,
         ProductOptionsComponent,
-        ReverseSortPipe
+        ReverseSortPipe,
+        SideMenuComponent
     ]
 })
 export class SharedModule{

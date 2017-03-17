@@ -11,6 +11,9 @@ import { AddImageComponent } from './products/add-new/add-image.component';
 import { AddCategoryComponent } from './categories/add-category.component';
 import { ViewCategoriesComponent } from './categories/view-categories.component';
 import { CategoryMainComponent } from './categories/category-main.component';
+import { ViewFeaturesComponent } from './products/view-features.component';
+import { FeatureMainComponent } from './products/add-new/feature-main.component';
+import { AdminAppComponent } from './admin-app.component';
 
 @NgModule({
     imports:    [
@@ -26,7 +29,10 @@ import { CategoryMainComponent } from './categories/category-main.component';
         AddImageComponent,
         AddCategoryComponent,
         ViewCategoriesComponent,
-        CategoryMainComponent
+        CategoryMainComponent,
+        ViewFeaturesComponent,
+        FeatureMainComponent,
+        AdminAppComponent
     ],
     providers: [ OrderService ]
 })
