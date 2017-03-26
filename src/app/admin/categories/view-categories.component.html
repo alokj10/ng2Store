@@ -5,21 +5,33 @@
     <div class="list-group">
         <li class="list-group-item">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-3">
                     <h4>Title</h4>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-3">
+                    <h4>Parent</h4>
+                </div>
+                <div class="col-md-3">
                     <h4>Description</h4>
+                </div>
+                <div class="col-md-3">
                 </div>
             </div>
         </li>
         <li *ngFor="let item of categories" class="list-group-item">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-3">
                     <span>{{item.title}}</span>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-3">
+                    <span>{{item.parent}}</span>
+                </div>
+                <div class="col-md-3">
                     <span>{{item.description}}</span>
+                </div>
+                <div class="col-md-3 clearfix">
+                    <button title="Edit" (click)="editHandle(item)" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span></button>
+                    <button title="Remove" (click)="deleteHandle(item)" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
                 </div>
             </div>
         </li>

@@ -19,13 +19,13 @@ export class ProductListComponent implements OnInit{
     filterSubscription: Subscription;
     @ViewChild(FilterAreaComponent) filterAreaComponent: FilterAreaComponent; 
     products: any[];
-    imgUrl: string;
+    img_url: string;
 
     constructor(private route: ActivatedRoute,
                 private productService: ProductService,
                 @Inject(Window)private win: Window,
                 private filterService: FilterService){
-        this.imgUrl = this.win + 'assets/5.png';
+        this.img_url = this.win + 'assets/5.png';
         this.filterSubscription = this.filterService
                                       .payload$
                                       .subscribe(i => 
@@ -44,16 +44,30 @@ export class ProductListComponent implements OnInit{
     }
 
     populateProducts(){
-        let products = this.productService.getProducts()
-                            .subscribe(
-                                products => {
-                                    console.log(products[0]);
-                                    this.products = products
-                                },
-                                err => {
-                                    console.log(err);
-                                }
-                            );
+        if(this.categoryId){
+            this.productService.getProductByCategory(this.categoryId)
+                                .subscribe(
+                                    products => {
+                                        console.log(products[0]);
+                                        this.products = products
+                                    },
+                                    err => {
+                                        console.log(err);
+                                    }
+                                );
+        }
+        else{
+            this.productService.getProducts()
+                                .subscribe(
+                                    products => {
+                                        console.log(products[0]);
+                                        this.products = products
+                                    },
+                                    err => {
+                                        console.log(err);
+                                    }
+                                );
+        }
         // this.products = MockProducts.filter(x => x.CategoryId === this.categoryId);
         // if(this.products.length === 0){
         //     this.products = MockProducts;

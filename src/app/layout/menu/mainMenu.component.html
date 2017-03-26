@@ -13,14 +13,15 @@
 				<li *ngFor="let level1Item of navList" class="dropdown">
 					<a href="#" class="dropdown-toggle" 
 					   (click)="openSubMenu(level1Item)" data-toggle="dropdown" role="button" aria-expanded="false">
-                        <i class="fa fa-fw fa-bell-o"></i>{{level1Item.Name}} </a>
+                        {{level1Item.title}} </a>
 				</li>
 			</ul>
 		</div>
 	</div>
 </nav>
 <so-modal [(visible)]="showModal" (toggleVisibility)="submenu.clearMenu();closeSubMenu();">
-	<so-submenu #submenu  
+	<so-submenu #submenu
+				[isNavigationRequired]="true"  
 				[allCategories]="allCategories"
-				(onSubmenuClosed)="closeSubMenu()"></so-submenu>
+				(onSubmenuClosed)="closeSubMenu($event)"></so-submenu>
 </so-modal>

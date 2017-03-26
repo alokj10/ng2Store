@@ -20,7 +20,7 @@ const adminRoutes: Routes = [
           { path: 'products', component: ViewProductsComponent },
           { path: 'products/new', component: AddNewProductComponent },
           { path: 'orders', component: ViewOrdersComponent },
-          { path: 'categories', component: ViewCategoriesComponent },
+          { path: 'categories', component: CategoryMainComponent },
           { path: '', redirectTo: 'orders', pathMatch: 'full' }
         ]
       }

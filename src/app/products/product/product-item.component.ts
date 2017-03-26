@@ -2,6 +2,7 @@ import { Component, Input, Inject } from '@angular/core';
 import { IProduct } from '../../model/product.interface';
 import { CartService } from '../../services/cart.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfigSettings } from '../../services/configSettings.service';
 
 @Component({
     selector: 'product-item',
@@ -15,30 +16,32 @@ export class ProductItemComponent{
     constructor(private router: Router,
                 private route: ActivatedRoute,
                 @Inject(Window)private win: Window,
+                private config: ConfigSettings,
                 private cartService: CartService){
                             
                 }
 
-    get imgUrl(): string{
-        return this.win + this.product.ImgUrl;
+    get img_url(): string{
+        // return this.win + this.product.img_url;
+        return this.config.apiUrl + this.product.img_url;
     }
 
     get subTotal(): number{
-        return this.product.SellingPrice * this.product.Quantity;
+        return this.product.sell_price * this.product.stock_quantity;
         // return 1000;
     }    
 
     get price(): number{
-        return this.product.SellingPrice;
+        return this.product.sell_price;
         // return 1000;
     }    
 
-    get quantity(): number{
-        return this.product.Quantity;
+    get stock_quantity(): number{
+        return this.product.stock_quantity;
     }
 
-    set quantity(qty){
-        this.product.Quantity = qty;
+    set stock_quantity(qty){
+        this.product.stock_quantity = qty;
         console.log(qty);
     }
 
@@ -47,7 +50,7 @@ export class ProductItemComponent{
     }
     
     go_to_detail(product: IProduct){
-        this.router.navigate(['/detail', product.Id]);
+        this.router.navigate(['/detail', product.id]);
     }
     
     add_to_cart(product: IProduct){

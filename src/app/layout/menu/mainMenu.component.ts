@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ICategory } from '../../model/category.interface';
 import { MenuService } from '../../services/menu.service';
-import { SubmenuComponent } from './submenu.component';
+import { SubmenuComponent } from '../../shared/menu/submenu.component';
 
 @Component({
     selector: 'so-mainMenu',
@@ -18,15 +18,17 @@ export class MainMenuComponent{
     @ViewChild(SubmenuComponent) submenuComponent:SubmenuComponent;
 
     constructor(private menuService: MenuService){
-        /*this.menuService.getLevel1MenuItems()
-                        .then(categories => {
+        console.log('menu create');
+        this.menuService.getAllCategories()
+                        .subscribe(categories => {
                             this.allCategories = categories;
                             this.setNavList(categories);
-                        });*/
+                        });
     }
 
     setNavList(categories: ICategory[]){
-        this.navList = categories.filter(item => item.ParentId == 0);
+        console.log('menu set ' + categories[0].parent_category_id);
+        this.navList = categories.filter(item => item.parent_category_id == 0);
     }
 
     set showModal(showModal: boolean){
@@ -46,13 +48,13 @@ export class MainMenuComponent{
     }
 
     openSubMenu(level1Item: ICategory){
-        this.selectedCategoryId = level1Item.Id;
+        this.selectedCategoryId = level1Item.id;
         this.submenuComponent.parentCategoryId = this.selectedCategoryId;
         this.showModal = true;
         return false;
     }
 
-    closeSubMenu(){
+    closeSubMenu(categoryItem: any){
         this.selectedCategoryId = 0;
         this.showModal = false;
     }

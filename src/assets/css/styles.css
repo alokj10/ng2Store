@@ -1,6 +1,9 @@
 .no-border{
     border: none;
 }
+.fixed{
+    position: fixed;
+}
 body{
     overflow-x: hidden;
 }

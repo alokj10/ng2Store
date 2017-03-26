@@ -1,7 +1,7 @@
 <!--<div class="col-md-12">
     <div class="col-md-4 list-group submenu">
         <li *ngFor="let item of subNavList" 
-            on-mouseover="GetLevel3List(item.Id)"    
+            on-mouseover="GetLevel3List(item.id)"    
             class="list-group-item no-border">
             <a href="#">{{item.Name}}</a>
         </li>
@@ -25,12 +25,12 @@
 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 bhoechie-tab-container">
             <div class="col-lg-4 col-md-4 col-sm-3 col-xs-3 bhoechie-tab-menu">
               <div class="list-group no-border">
-                <a *ngFor="let item of subNavList" [routerLink]="['/products',item.Id]" 
+                <a *ngFor="let item of subNavList" 
                     class="list-group-item text-center no-border"
-                    (click)="closeSubmenu()"
+                    (click)="closeSubmenu(item)"
                     on-mouseover="GetLevel3List(item)"
                     [class.active]="selectedItem==item">
-                  {{item.Name}}
+                  {{item.title}}
                 </a>
               </div>
             </div>
@@ -39,14 +39,13 @@
                     <div class="col-md-6">
                         <li *ngFor="let subItem of level3List | slice:0:5; let i=index" 
                             class="list-group-item no-border">
-                            <a (click)="closeSubmenu()" 
-                            [routerLink]="['/products',subItem.Id]" routerLinkActive="active">{{subItem.Name}}</a>
+                            <a (click)="closeSubmenu(subItem)">{{subItem.title}}</a>
                         </li>
                     </div>
                     <div class="col-md-6" *ngIf="level3List.length > 6">
                         <li *ngFor="let subItem of level3List | slice:5:10; let i=index" 
                             class="list-group-item no-border">
-                            <a (click)="closeSubmenu()" [routerLink]="['/products',subItem.Id]" routerLinkActive="active">{{subItem.Name}}</a>
+                            <a (click)="closeSubmenu(subItem)">{{subItem.title}}</a>
                         </li>
                     </div>
                 </div>

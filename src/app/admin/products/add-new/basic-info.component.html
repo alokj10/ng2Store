@@ -13,12 +13,22 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="inputCategory">Product Category</label>
-                                    <select name="category" [(ngModel)]="model.category" 
+                                    <!--<select name="category" [(ngModel)]="model.category_id" 
                                     class="form-control" id="inputCategory">
-                                        <option *ngFor="let cat of categories">
+                                        <option *ngFor="let cat of parentCategories" value="{{cat.id}}">
                                             {{cat.title}}
                                         </option>
-                                    </select>
+                                    </select>-->
+                                    <button type="button" data-toggle="dropdown" 
+                                    class="btn btn-default dropdown-toggle clearfix">
+                                        <span class="pull-left">{{selectedCategoryItem.title}}</span>
+                                        <span class="pull-right"><span class="caret"></span></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li *ngFor="let cat of parentCategories">
+                                            <a (click)="openSubMenu(cat)">{{cat.title}}</a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -57,8 +67,8 @@
                             <label>Product Options</label>
                             <div *ngFor="let item of options | reverse"> 
                                     <so-product-option
-                                            (optionAddEvent)="optionAdded(item)"
-                                            (optionRemoveEvent)="optionRemoved(item)">
+                                            (optionAddEvent)="optionAdded($event)"
+                                            (optionRemoveEvent)="optionRemoved($event)">
                                     </so-product-option>
                             </div>
                         </div>
@@ -71,3 +81,13 @@
                 </div>
         </div>
     </form>
+
+
+<so-modal [(visible)]="showModal" 
+          (toggleVisibility)="submenu.clearMenu();closeSubMenu();">
+	<so-submenu #submenu  
+				[isNavigationRequired]="false"  
+                [allCategories]="categories"
+				(onSubmenuClosed)="closeSubMenu($event)"></so-submenu>
+</so-modal>
+    

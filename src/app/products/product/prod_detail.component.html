@@ -1,88 +1,97 @@
-<a class="btn btn-small btn-default pull-right" (click)="goBack()">Back to All Products</a>
-
 <div *ngIf="product">
-    <product-item #product_item>
+    <product-item #product_item [product]="product">
 <div class="container clearfix">
         <a class="btn btn-small btn-default pull-right" (click)="goBack()">Back to All Products</a>
 		<div class="card">
 			<div class="container-fliud">
-				<div class="wrapper row">
-					<div class="preview col-md-6">
-						
-						<div class="tab-content">
-						  <div class="tab-pane active" id="pic-1"><img src="{{product.ImgUrl}}" /></div>
-						  <div class="tab-pane" id="pic-2"><img src="{{product.ImgUrl}}" /></div>
-						  <div class="tab-pane" id="pic-3"><img src="{{product.ImgUrl}}" /></div>
-						  <div class="tab-pane" id="pic-4"><img src="{{product.ImgUrl}}" /></div>
-						  <div class="tab-pane" id="pic-5"><img src="{{product.ImgUrl}}" /></div>
-						</div>
-						
-						<div class="action clearfix">
-							<button class="add-to-cart btn btn-default btn-large pull-left" type="button"
-							(click)="product_item.add_to_cart(product)">add to cart</button>
-							<button class="like btn btn-default btn-large pull-right" type="button"
-							(click)="product_item.buy_now(product)">buy now</button>
-						</div>
-						<!--<ul class="preview-thumbnail nav nav-tabs">
+				<div class="wrapper row clearfix">
+					<div class="col-md-6">
+						<div class="preview fixed">
 							
-						  <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="{{imgUrl}}" /></a></li>
-						  <li><a data-target="#pic-2" data-toggle="tab"><img src="{{imgUrl}}" /></a></li>
-						  <li><a data-target="#pic-3" data-toggle="tab"><img src="{{imgUrl}}" /></a></li>
-						  <li><a data-target="#pic-4" data-toggle="tab"><img src="{{imgUrl}}" /></a></li>
-						  <li><a data-target="#pic-5" data-toggle="tab"><img src="{{imgUrl}}" /></a></li>
-						</ul>-->
-						
-					</div>
-					<div class="details col-md-6">
-						<h3 class="product-title">{{product.title}}</h3>
-						<!--<div class="rating">
-							<div class="stars">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
+							<div class="tab-content">
+							<div class="tab-pane active" id="pic-1"><img src="{{product_item.img_url}}" /></div>
+							<!--<div class="tab-pane" id="pic-2"><img src="{{product_item.img_url}}" /></div>
+							<div class="tab-pane" id="pic-3"><img src="{{product_item.img_url}}" /></div>
+							<div class="tab-pane" id="pic-4"><img src="{{product_item.img_url}}" /></div>
+							<div class="tab-pane" id="pic-5"><img src="{{product_item.img_url}}" /></div>-->
 							</div>
-							<span class="review-no">41 reviews</span>
-						</div>-->
-						<p class="vote"><span class="badge">4.5 ★</span> <strong>2400 Ratings & 1500 Reviews</strong> </p>
-						<h3 class="price">&#8377;  {{product.SellingPrice}}</h3>
-						<h5 class="colors">colors:
-							<span class="color orange" data-toggle="tooltip" title="Not In store"></span>
-							<span class="color green"></span>
-							<span class="color blue"></span>
-						</h5>
-						<div class="row">
-							<div class="col-md-6">
-								<h5 class="sizes"><strong>Features:</strong>
-									<li *ngFor="let feature of product.Features" class="list-group-item no-border features" 
-										title="{{feature}}">
-										<span class="tick glyphicon glyphicon-ok"></span>  
-										{{feature}}
-									</li>
-								</h5>
+							
+							<div class="action clearfix">
+								<button class="add-to-cart btn btn-default btn-large pull-left" type="button"
+								(click)="product_item.add_to_cart(product)">add to cart</button>
+								<button class="like btn btn-default btn-large pull-right" type="button"
+								(click)="product_item.buy_now(product)">buy now</button>
 							</div>
-							<div class="col-md-6">
-								<h5 class="sizes"><strong>Services:</strong>
-									<li *ngFor="let service of product.Services" class="list-group-item no-border features" 
-										title="{{service.Description}}">
-										{{service.Description}}
-									</li>
-								</h5>
-							</div>
+							<!--<ul class="preview-thumbnail nav nav-tabs">
+								
+							<li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="{{img_url}}" /></a></li>
+							<li><a data-target="#pic-2" data-toggle="tab"><img src="{{img_url}}" /></a></li>
+							<li><a data-target="#pic-3" data-toggle="tab"><img src="{{img_url}}" /></a></li>
+							<li><a data-target="#pic-4" data-toggle="tab"><img src="{{img_url}}" /></a></li>
+							<li><a data-target="#pic-5" data-toggle="tab"><img src="{{img_url}}" /></a></li>
+							</ul>-->
+							
 						</div>
-						<h5 class="sizes"><strong>Description:</strong>
-							<p class="product-description">{{product.Description}}</p>
-						</h5>
-						<h5 class="sizes"><strong>Specifications:</strong>
-							<li *ngFor="let spec of product.Specifications" class="list-group-item no-border features" 
-										title="{{spec.Description}}">
-										{{spec.Description}}
-							</li>
-						</h5>
-						<h5 class="sizes"><strong>Reviews & Ratings</strong>
-							<so-view-review></so-view-review>
-						</h5>
+					</div>
+					<div class="col-md-6">
+						<div class="details">
+							<h3 class="product-title">{{product.title}}</h3>
+							<!--<div class="rating">
+								<div class="stars">
+									<span class="fa fa-star checked"></span>
+									<span class="fa fa-star checked"></span>
+									<span class="fa fa-star checked"></span>
+									<span class="fa fa-star"></span>
+									<span class="fa fa-star"></span>
+								</div>
+								<span class="review-no">41 reviews</span>
+							</div>-->
+							<p class="vote"><span class="badge">4.5 ★</span> <strong>2400 Ratings & 1500 Reviews</strong> </p>
+							<h3 class="price">&#8377;  {{product.sell_price}}</h3>
+							<h5 class="colors">colors:
+								<span class="color orange" data-toggle="tooltip" title="Not In store"></span>
+								<span class="color green"></span>
+								<span class="color blue"></span>
+							</h5>
+							<div class="row">
+								<div class="col-md-6">
+									<h5 class="sizes"><strong>Features:</strong>
+										<li *ngFor="let feature of features" class="list-group-item no-border features" 
+											title="{{feature.title}}">
+											<span class="tick glyphicon glyphicon-ok">&nbsp;</span>  
+											{{feature.description}}
+										</li>
+									</h5>
+								</div>
+								<div class="col-md-6">
+									<h5 class="sizes"><strong>Services:</strong>
+										<li *ngFor="let service of product.Services" class="list-group-item no-border features" 
+											title="{{service.Description}}">
+											{{service.Description}}
+										</li>
+									</h5>
+								</div>
+							</div>
+							<h5 class="sizes"><strong>Description:</strong>
+								<p class="product-description">{{product.description}}</p>
+							</h5>
+							<h5 class="sizes"><strong>Specifications:</strong>
+								<li *ngFor="let spec of specifications" class="list-group-item no-border features" 
+											>
+										<div class="row">
+											<div class="col-md-4">
+												<label>{{spec.title}}</label>
+											</div>
+											<div class="col-md-8">
+												<span>{{spec.description}}</span>
+											</div>
+										</div>
+								</li>
+							</h5>
+							<h5 class="sizes"><strong>Reviews & Ratings</strong>
+								<so-view-review></so-view-review>
+							</h5>
+						</div>
 					</div>
 				</div>
 			</div>

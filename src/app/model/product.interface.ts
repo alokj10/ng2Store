@@ -4,17 +4,17 @@ import { ISpecification } from './specification.interface';
 import { IService } from './service.interface';
 
 export interface IProduct{
-    Id: number;
+    id: number;
     Name: string;
     CategoryId: number;
-    Title: string;
-    Description: string;
+    title: string;
+    description: string;
     MarketPrice: number;
-    SellingPrice: number;
+    sell_price: number;
     ModelNumber: string;
-    ImgUrl: string;
+    img_url: string;
     Available: number;
-    Quantity: number;
+    stock_quantity: number;
     Features: string[];
     Specifications: ISpecification[];
     Offers: IOffer[];

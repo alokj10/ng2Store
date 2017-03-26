@@ -31,7 +31,7 @@ export class FilterService{
         let products = MockProducts.filter(i => i.CategoryId == categoryId);
         let productOptions: any[] = [];
         MockProductOptions.map(item => {
-            if(products.filter(p => p.Id == item.ProductId).length > 0)
+            if(products.filter(p => p.id == item.ProductId).length > 0)
             {
                 productOptions.push(item);
             }
@@ -66,10 +66,10 @@ export class FilterService{
     }
 
     getCategoryName(categoryId: number): string{
-        let category = MockCategories.filter(x => x.Id === categoryId);
+        let category = MockCategories.filter(x => x.id === categoryId);
         if(category.length > 0)
         {
-            return category[0].Title;
+            return category[0].title;
         }
         return '';
     }
@@ -81,6 +81,28 @@ export class FilterService{
         let options = new RequestOptions({ headers: headers });
         
                 return this.http.post(url,data, options)
+                        .map((res: Response) => res.json())
+                        .catch(this.handleError);
+    }
+    
+    updateCategory(data: any): Observable<any>{
+        let url = this.apiUrl + 'api/categories/' + data.id;
+        console.log('url - ' + url);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        
+                return this.http.put(url,data, options)
+                        .map((res: Response) => res.json())
+                        .catch(this.handleError);
+    }
+    
+    deleteCategory(data: any): Observable<any>{
+        let url = this.apiUrl + 'api/categories/' + data.id;
+        console.log('url - ' + url);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        
+                return this.http.delete(url, options)
                         .map((res: Response) => res.json())
                         .catch(this.handleError);
     }

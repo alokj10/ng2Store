@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 export class AddNewProductComponent{
     basicActive: boolean;
     featureActive: boolean;
+    specActive: boolean;
     imageActive: boolean;
     productId: number;
 
@@ -16,6 +17,7 @@ export class AddNewProductComponent{
     setTabActive(tab: string){
         this.basicActive = false;
         this.featureActive = false;
+        this.specActive = false;
         this.imageActive = false;
 
         if(tab === 'basic')
@@ -25,6 +27,10 @@ export class AddNewProductComponent{
         else if(tab === 'feature')
         {
             this.featureActive = true;
+        }
+        else if(tab === 'spec')
+        {
+            this.specActive = true;
         }
         else if(tab === 'image')
         {
@@ -38,6 +44,10 @@ export class AddNewProductComponent{
     }
 
     onFeatureSubmit(){
+        this.setTabActive('spec');
+    }
+    
+    onSpecSubmit(){
         this.setTabActive('image');
     }
 

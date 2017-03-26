@@ -5,22 +5,22 @@
         <div class="menu-list">
   
             <ul id="menu-content" class="menu-content collapse out">
-                <li>
-                  <a [routerLink]="['/admin/orders']">
+                <li routerLinkActive="active">
+                  <a [routerLink]="['/admin/dashboard']">
                   <i class="fa fa-dashboard fa-lg"></i> Dashboard
                   </a>
                 </li>
-                <li class="active">
-                  <a [routerLink]="['/admin/orders']">
-                  <i class="fa fa-dashboard fa-lg"></i> Orders
+                <li routerLinkActive="active">
+                  <a [routerLink]="['/admin/orders']" routerLinkActive="active">
+                  <i class="fa fa-shopping-cart fa-lg"></i> Orders
                   </a>
                 </li>
-                <li  data-toggle="collapse" data-target="#products" class="collapsed">
-                  <a [routerLink]="['/admin/products']"><i class="fa fa-gift fa-lg"></i> Products <span class="arrow"></span></a>
+                <li routerLinkActive="active" data-toggle="collapse" data-target="#products" class="collapsed">
+                  <a [routerLink]="['/admin/products']" routerLinkActive="active"><i class="fa fa-cube fa-lg"></i> Products <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="products">
-                    <li class="active"><a [routerLink]="['/admin/products']">View Products</a></li>
-                    <li><a [routerLink]="['/admin/products/new']">Add New</a></li>
+                    <li routerLinkActive="active"><a [routerLink]="['/admin/products']">View Products</a></li>
+                    <li routerLinkActive="active"><a [routerLink]="['/admin/products/new']">Add New</a></li>
                     <!--<li><a href="#">Buttons</a></li>
                     <li><a href="#">Tabs & Accordions</a></li>
                     <li><a href="#">Typography</a></li>
@@ -30,20 +30,24 @@
                     <li><a href="#">Widgets</a></li>
                     <li><a href="#">Bootstrap Model</a></li>-->
                 </ul>
-                <li  data-toggle="collapse" data-target="#users" class="collapsed">
-                  <a [routerLink]="['/admin/products']"><i class="fa fa-gift fa-lg"></i> Users <span class="arrow"></span></a>
+                <li routerLinkActive="active">
+                  <a [routerLink]="['/admin/categories']">
+                  <i class="fa fa-sitemap fa-lg"></i> Categories
+                  </a>
                 </li>
-                <ul class="sub-menu collapse" id="users">
-                    <li class="active"><a href="#">Add New</a></li>
-                    <li><a [routerLink]="['/admin/products']">Edit</a></li>
-                    <li><a [routerLink]="['/admin/products']">My Account</a></li>
+                <li routerLinkActive="active" data-toggle="collapse" data-target="#users" class="collapsed">
+                  <a [routerLink]="['/admin/users']"><i class="fa fa-users fa-lg"></i> Users <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" routerLinkActive="active" id="users">
+                    <li routerLinkActive="active"><a [routerLink]="['/admin/users']">Add New</a></li>
+                    <li routerLinkActive="active"><a [routerLink]="['/admin/users/new']">My Account</a></li>
                 </ul>
-                <li  data-toggle="collapse" data-target="#settings" class="collapsed">
-                  <a [routerLink]="['/admin/products']"><i class="fa fa-gift fa-lg"></i> Settings <span class="arrow"></span></a>
+                <li  data-toggle="collapse" data-target="#settings" routerLinkActive="active" class="collapsed">
+                  <a [routerLink]="['/admin/settings']"><i class="fa fa-gear fa-lg"></i> Settings <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="settings">
-                    <li class="active"><a [routerLink]="['/admin/products']">General Settings</a></li>
-                    <li><a [routerLink]="['/admin/products']">Menu</a></li>
+                    <li routerLinkActive="active"><a [routerLink]="['/admin/setings']">General Settings</a></li>
+                    <li routerLinkActive="active"><a [routerLink]="['/admin/menusettings']" >Menu</a></li>
                 </ul>
 <!--
                 <li data-toggle="collapse" data-target="#service" class="collapsed">

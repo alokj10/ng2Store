@@ -12,6 +12,7 @@ import { ProductItemComponent } from '../products/product/product-item.component
 import { ControlButtonComponent } from './control-button/control-button.component';
 import { ProductOptionsComponent } from './product-option/product-option.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
+import { SubmenuComponent } from './menu/submenu.component';
 
 import { ReverseSortPipe } from './pipes/reverse-sort.pipe';
 
@@ -32,6 +33,7 @@ import { ReverseSortPipe } from './pipes/reverse-sort.pipe';
         ControlButtonComponent,
         ProductOptionsComponent,
         ReverseSortPipe,
+        SubmenuComponent,
         SideMenuComponent
     ],
     exports:[
@@ -45,6 +47,7 @@ import { ReverseSortPipe } from './pipes/reverse-sort.pipe';
         ControlButtonComponent,
         ProductOptionsComponent,
         ReverseSortPipe,
+        SubmenuComponent,
         SideMenuComponent
     ]
 })

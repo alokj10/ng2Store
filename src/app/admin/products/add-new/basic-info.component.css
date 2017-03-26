@@ -5,3 +5,6 @@
     margin-left: 3%;
     width: 95%;
 }
+.dropdown-menu li a{
+    cursor: pointer;
+}

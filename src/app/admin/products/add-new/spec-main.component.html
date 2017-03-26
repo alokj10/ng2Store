@@ -1,0 +1,7 @@
+    <div class="col-md-5">
+        <so-add-spec [productId]="productId" (onAdd)="specAdded()"></so-add-spec>
+    </div>
+    <div class="col-md-5">
+        <so-view-spec [productId]="productId"></so-view-spec>
+    </div>
+    <button class="btn btn-default pull-right" type="button" (click)="onSpecNext()">Next</button>

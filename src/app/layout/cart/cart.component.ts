@@ -48,7 +48,7 @@ export class CartComponent implements OnInit, OnDestroy{
     
     item_added(product: IProduct){
         this.items++;
-        this.total = this.total + product.SellingPrice;
+        this.total = this.total + product.sell_price;
         this.add_to_user_cart(product);
     }
     
@@ -78,7 +78,7 @@ export class CartComponent implements OnInit, OnDestroy{
         this.total = 0;
         this.items = 0;
         this.products.forEach(product => {
-            this.total += product.SellingPrice * product.Quantity;
+            this.total += product.sell_price * product.stock_quantity;
             this.items++; 
         })
     }

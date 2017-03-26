@@ -1,3 +1,4 @@
+<so-mainMenu></so-mainMenu>
 <so-sidebar>
     <so-filter [categoryId]="categoryId"></so-filter>
 </so-sidebar>
@@ -5,49 +6,51 @@
     	<!--<so-breadcrumb></so-breadcrumb>-->
 		<h3>{{categoryTitle}}</h3>
 		<hr>
-        <div *ngFor="let product of products">
-            <product-item #product_item>
-                <div class="col-md-4">
-                 <article class="col-item">
-        		<div class="photo">
-        			<div class="options">
-        				<button class="btn btn-default" type="submit" data-toggle="tooltip" data-placement="top" title="Add to wish list">
-        					<span class="glyphicon glyphicon-heart"></span>
-        				</button>
-        			</div>
-        			<div class="options-cart">
-        				<button class="btn btn-default" title="Add to cart" (click)="product_item.add_to_cart(product)">
-        					<span class="glyphicon glyphicon-shopping-cart"></span>
-        				</button>
-        			</div>
-        			<a (click)="product_item.go_to_detail(product)"> 
-						<img src="{{product.ImgUrl}}" class="img-responsive" 
-							alt="Product Image" /> 
-					</a>
-        		</div>
-        		<div class="info">
-        			<div class="row">
-        				<div class="price-details col-md-6">
-        					<p class="details">
-        						{{product.title}}
-        					</p>
-							<p class="vote"><span class="badge">4.5 ★</span> 2400 Ratings & 1500 Reviews </p>
-							<div class="row">
-								<div class="col-md-8">
-									<li *ngFor="let feature of product.Features" class="list-group-item no-border features" 
-												title="{{feature}}">
-												<span class="tick glyphicon glyphicon-ok"></span>  {{feature}}
-									</li>
+		<div class="row">
+        <div class="box-item col-md-4" *ngFor="let product of products">
+            <product-item #product_item [product]="product">
+                <!--<div class="col-md-4">-->
+						<article class="col-item">
+							<div class="photo">
+								<div class="options">
+									<button class="btn btn-default" type="submit" data-toggle="tooltip" data-placement="top" title="Add to wish list">
+										<span class="glyphicon glyphicon-heart"></span>
+									</button>
 								</div>
-								<div class="col-md-4">
-									<span class="price-new">&#8377;  {{product.SellingPrice}}</span>
+								<div class="options-cart">
+									<button class="btn btn-default" title="Add to cart" (click)="product_item.add_to_cart(product)">
+										<span class="glyphicon glyphicon-shopping-cart"></span>
+									</button>
+								</div>
+								<a (click)="product_item.go_to_detail(product)"> 
+									<img src="{{product_item.img_url}}" class="img-responsive" 
+										alt="Product Image" style="width:300px;height:200px;" /> 
+								</a>
+							</div>
+							<div class="info">
+								<div class="row">
+									<div class="price-details col-md-6">
+										<p class="details">
+											{{product.title}}
+										</p>
+										<p class="vote"><span class="badge">4.5 ★</span> 2400 Ratings & 1500 Reviews </p>
+										<div class="row">
+											<div class="col-md-8">
+												<li *ngFor="let feature of product.Features" class="list-group-item no-border features" 
+															title="{{feature}}">
+															<span class="tick glyphicon glyphicon-ok"></span>  {{feature}}
+												</li>
+											</div>
+											<div class="col-md-4">
+												<span class="price-new">&#8377;  {{product.sell_price}}</span>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-        				</div>
-        			</div>
-        		</div>
-        	</article>
-                </div>
+					</article>
+                <!--</div>-->
             </product-item>
+        </div>        
         </div>        
 </div>

@@ -82,7 +82,9 @@ div.bhoechie-tab-content li>a{
     text-align: left;
     color: #ffffff;
 }
-
+.list-group a, .list-group-item a{
+  cursor: pointer;
+}
 
 div.bhoechie-tab div.bhoechie-tab-content:not(.active){
   display: none;

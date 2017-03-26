@@ -40,8 +40,8 @@ export class ViewCartComponent implements OnInit, OnDestroy{
         if(this.products != undefined)
         {
             this.products.forEach(element => {
-                // element.price = (element.price * element.quantity); 
-                total += (element.SellingPrice * element.Quantity); 
+                // element.price = (element.price * element.stock_quantity); 
+                total += (element.sell_price * element.stock_quantity); 
             });
          }
         return total;
@@ -60,8 +60,8 @@ export class ViewCartComponent implements OnInit, OnDestroy{
    getTotal(products: IProduct[]){
         let total = 0;
         products.forEach(element => {
-            // element.price = (element.price * element.quantity); 
-            total += element.SellingPrice * element.Quantity; 
+            // element.price = (element.price * element.stock_quantity); 
+            total += element.sell_price * element.stock_quantity; 
         });
         return total;
     }
@@ -71,7 +71,7 @@ export class ViewCartComponent implements OnInit, OnDestroy{
     }
 
     removeItem(product: IProduct){
-        this.products.splice(this.products.findIndex(x => x.Id == product.Id),1);
+        this.products.splice(this.products.findIndex(x => x.id == product.id),1);
         this.productService.remove_from_user_cart(product);
     }
 

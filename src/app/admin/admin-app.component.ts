@@ -7,6 +7,7 @@ export class AdminAppComponent{
     sideWidth: number = 3;
     mainWidth: number = 9;
     constructor(){
+        console.log('admin init');
         this.toggled(false);
     }
 

@@ -27,7 +27,7 @@ import { AppRoutingModule } from '../app-routing.module';
         CommonModule,
         AppRoutingModule,
         SharedModule,
-        SecurityModule
+        SecurityModule,
         // InMemoryWebApiModule.forRoot(InMemoryProductService)
     ],
     declarations:[

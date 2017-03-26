@@ -20,7 +20,7 @@ export class ViewProductsComponent implements OnInit{
     }
     
     populateProducts(){
-        this.productService.getProducts()
+        this.productService.getAllProducts()
                            .subscribe(
                                 products => {
                                     console.log(products[0]);

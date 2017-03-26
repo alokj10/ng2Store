@@ -15,7 +15,7 @@
                     <h4>Item</h4>
                 </div>
                 <div class="col-md-2 text-center">
-                    <h4>Quantity</h4>
+                    <h4>stock_quantity</h4>
                 </div>
                 <div class="col-md-2">
                     <h4>Price</h4>
@@ -29,7 +29,7 @@
             <product-item #product_item [product]="product">
                 <div class="row">
                     <div class="col-md-2">
-                        <img src="{{product.ImgUrl}}" />
+                        <img src="{{product.img_url}}" />
                     </div>
                     <div class="col-md-2">
                         <span>{{product.Title}}</span>
@@ -37,7 +37,7 @@
                     <div class="col-md-2 text-center">
                         <strong>
                             <input type="text" class="text-center" style="width:30px;" maxlength="4" 
-                            [(ngModel)]="product_item.quantity" />
+                            [(ngModel)]="product_item.stock_quantity" />
                         </strong>
                     </div>
                     <div class="col-md-2">

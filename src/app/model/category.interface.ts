@@ -1,7 +1,8 @@
 export interface ICategory{
-    Id: number;
+    id: number;
     Name: string;
-    Title: string;
-    Description: string;
-    ParentId: number;
+    title: string;
+    description: string;
+parent_category_id: number;
+    parent: string;
 }

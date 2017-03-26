@@ -7,10 +7,10 @@
 }
 /* Animation.css*/
 .box-item{
-    width: 300px;
+    /*width: 300px;*/
 }
 .col-item {
-  border: 1px solid #E1E1E1;
+  /*border: 1px solid #E1E1E1;*/
   background: #FFF;
   margin-bottom:12px;
 }
@@ -142,4 +142,10 @@
 }
 .vote{
   padding: 4px;
+}
+
+.box-item{
+  min-height: 220px;
+  margin-top: 10px;
+  border-bottom: 1px solid rgb(100,100,100);
 }

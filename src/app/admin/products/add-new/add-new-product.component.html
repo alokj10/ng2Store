@@ -4,9 +4,12 @@
                 <so-basic-info (onBasicSubmit)="onBasicSubmit($event)"></so-basic-info>
             </so-tab>
             <so-tab step="2" tabTitle="Features"  [active]="featureActive">
-                <so-feature-main [productId]="productId" (onNext)="onFeatureSubmit($event)"></so-feature-main>
+                <so-feature-main [productId]="productId" (onNext)="onFeatureSubmit()"></so-feature-main>
             </so-tab>
-            <so-tab step="3" tabTitle="Images" [active]="imageActive">
+            <so-tab step="3" tabTitle="Specs"  [active]="specActive">
+                <so-spec-main [productId]="productId" (onNext)="onSpecSubmit()"></so-spec-main>
+            </so-tab>
+            <so-tab step="4" tabTitle="Images" [active]="imageActive">
                 <so-add-image [productId]="productId"></so-add-image>
             </so-tab>
         </so-tabs>

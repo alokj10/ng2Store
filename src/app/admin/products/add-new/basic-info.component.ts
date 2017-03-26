@@ -1,8 +1,9 @@
-import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ProductOptionItem } from '../../../shared/product-option/product-option.interface';
 
 import { FilterService } from '../../../services/filter.service';
 import { ProductService } from '../../../services/product.service';
+import { SubmenuComponent } from '../../../shared/menu/submenu.component';
 
 @Component({
     selector:   'so-basic-info',
@@ -15,26 +16,34 @@ export class ProductBasicInfoComponent{
     options: any[];
     savedOptions: any[];
     categories: any[] = [];
+    parentCategories: any[] = [];
     model: any;
+    private _showModal: boolean = false;
+    private selectedCategoryId: number;
+    private selectedCategoryItem: any;
     @Output() onBasicSubmit = new EventEmitter<boolean>();
+
+    @ViewChild(SubmenuComponent) submenuComponent:SubmenuComponent;
 
     constructor(private filterService: FilterService,
                 private productService: ProductService){
         this.options = [];
         this.savedOptions = [];
-
         this.defaultOptionItem = {};
-
         this.options.push(this.defaultOptionItem);
+
         this.model = {};
         // this.model.options = [];
         this.populateCategories();
+        this.selectedCategoryItem = {};
+        this.selectedCategoryItem.title = 'Select';
     }
 
     populateCategories(){
         this.filterService.getCategories().subscribe(
             cats => {
                 this.categories = cats;
+                this.parentCategories = this.categories.filter(i => i.parent_category_id === 0);
                 console.log('cats returned - ' + cats.length);
             },
             err => {
@@ -42,7 +51,6 @@ export class ProductBasicInfoComponent{
             }
         )
     }
-
 
     optionAdded(optionItem: any){
         console.log('to add - ' + optionItem.name);
@@ -61,6 +69,8 @@ export class ProductBasicInfoComponent{
     }
 
     submitBasicInfoForm(){
+        this.model.category_id = this.selectedCategoryId;
+        this.model.options = this.savedOptions;
         this.productService.saveProduct(this.model).subscribe(
             cats => {
                 this.categories = cats;
@@ -72,5 +82,28 @@ export class ProductBasicInfoComponent{
                 console.log('error returned - ' + err);
             }
         )
+    }
+
+    openSubMenu(categoryItem: any){
+        this.selectedCategoryId = categoryItem.id;
+        this.submenuComponent.parentCategoryId = this.selectedCategoryId;
+        this.showModal = true;
+        // return false;
+    }
+
+    set showModal(showModal: boolean){
+        this._showModal = showModal;
+    }
+
+    get showModal(): boolean{
+        return this._showModal;
+    }
+    
+    closeSubMenu(categoryItem: any){
+        if(categoryItem){
+            this.selectedCategoryId = categoryItem.id;
+            this.selectedCategoryItem = categoryItem;
+        }
+        this.showModal = false;
     }
 }

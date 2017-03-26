@@ -12,15 +12,17 @@ import { LocationService } from '../../services/location.service';
 })
 export class ProductDetailComponent implements OnInit, OnDestroy{
     @Input() product: IProduct;
+    features: any[];
+    specifications: any[];
     sub: any;
-    imgUrl: string;
+    img_url: string;
 
     constructor(private productService: ProductService,
                 private locationService: LocationService,
                 @Inject(Window)private win: Window,
                         private route: ActivatedRoute
         )    {
-        this.imgUrl = this.win + 'assets/5.png';
+        this.img_url = this.win + 'assets/5.png';
 
     }
 
@@ -28,11 +30,20 @@ export class ProductDetailComponent implements OnInit, OnDestroy{
         this.sub = this.route.params.subscribe(params => {
            let id = +params['id'];
            console.log('prod selected: ' + id);
-         /*  this.productService.getProduct(id)
-               .then(product => {
+           this.productService.getProduct(id)
+               .subscribe(product => {
                    this.product = product;
-                   console.log('product found: ' + this.product.Title);
-            });*/
+                   console.log('product found: ' + this.product.title);
+            });
+            
+            this.productService.getFeatures(id)
+                .subscribe(fe => {
+                    this.features = fe;
+                })
+            this.productService.getSpecifications(id)
+            .subscribe(specs => {
+                this.specifications = specs;
+            })
         });
     }
 
@@ -41,10 +52,10 @@ export class ProductDetailComponent implements OnInit, OnDestroy{
     }
 
     goBack(){
-        // window.history.back();
-        this.locationService.getLocation(2)
-            .then(l => {
-            console.log('res - ' + l);
-        });
+        window.history.back();
+        // this.locationService.getLocation(2)
+        //     .then(l => {
+        //     console.log('res - ' + l);
+        // });
     }
 }

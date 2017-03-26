@@ -22,6 +22,13 @@ export class ProductService{
     }
 
     getProducts(): Observable<IProduct[]>{
+        let url = this.apiUrl + 'api/products/active';
+        return this.http.get(url)
+                   .map((res: Response) => res.json() as IProduct[])
+                   .catch(this.handleError);
+    }
+
+    getAllProducts(): Observable<IProduct[]>{
         let url = this.apiUrl + 'api/products';
         return this.http.get(url)
                    .map((res: Response) => res.json() as IProduct[])
@@ -59,33 +66,59 @@ export class ProductService{
                    .catch(this.handleError);
     }
 
-    // getProduct(id: number){
-    //     return Promise.resolve(this.getProducts()
-    //                                .then(products => 
-    //                                     products.find(product => product.Id === id)
-    //                                     ));
-    // }
+    getSpecifications(productId: number){
+        let url = this.apiUrl + 'api/specs/' + productId;
+        return this.http.get(url)
+                        .map((res: Response) => res.json())
+                        .catch(this.handleError);        
+    }
+
+    saveProductSpec(data: any): Observable<any>{
+        data = JSON.stringify(data);
+        console.log('spec post - ' + data);
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        
+        return this.http.post(this.apiUrl + 'api/specs', data, options)
+                   .map((res: Response) => res.json())
+                   .catch(this.handleError);
+    }
+
+    getProduct(productId: number){
+          let url = this.apiUrl + 'api/products/' + productId;
+            return this.http.get(url)
+                            .map((res: Response) => res.json())
+                            .catch(this.handleError);
+    }
+
+    getProductByCategory(categoryId: number){
+          let url = this.apiUrl + 'api/products/category/' + categoryId;
+            return this.http.get(url)
+                            .map((res: Response) => res.json())
+                            .catch(this.handleError);
+    }
     
     add_to_user_cart(product: IProduct){
         console.log("adding to cart - 1");
-        if(!this.cartItems.find(x => x.Id == product.Id))
+        if(!this.cartItems.find(x => x.id == product.id))
         {
             this.cartItems.push(product);
         }
         else{
-            var curQty = this.cartItems.find(x => x.Id == product.Id).Quantity;
-            this.cartItems.find(x => x.Id == product.Id).Quantity = curQty+1;
+            var curQty = this.cartItems.find(x => x.id == product.id).stock_quantity;
+            this.cartItems.find(x => x.id == product.id).stock_quantity = curQty+1;
         }
     }
 
     remove_from_user_cart(product: IProduct){
         console.log("removing from  cart - 1");
-        if(!this.cartItems.find(x => x.Id == product.Id))
+        if(!this.cartItems.find(x => x.id == product.id))
         {
             console.log('item not in the cart');
         }
         else{
-            this.cartItems.splice(this.cartItems.findIndex(x => x.Id == product.Id),1);
+            this.cartItems.splice(this.cartItems.findIndex(x => x.id == product.id),1);
         }
     }
      
