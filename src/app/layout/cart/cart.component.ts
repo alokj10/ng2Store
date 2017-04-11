@@ -15,6 +15,7 @@ export class CartComponent implements OnInit, OnDestroy{
     products: IProduct[]=[];
     subscription: Subscription;
     _showDropdown: boolean = false;
+    shippingChargesTotal: number;
 
     set showDropdown(showDropdown: boolean){
         this._showDropdown = showDropdown;
@@ -31,6 +32,7 @@ export class CartComponent implements OnInit, OnDestroy{
                 private productService: ProductService){
         this.items = 0;
         this.total = 0;
+        this.shippingChargesTotal = 0;
         this.subscription = this.cartService.payload$.subscribe(m => this.item_added(m));
     }
     
@@ -79,7 +81,10 @@ export class CartComponent implements OnInit, OnDestroy{
         this.items = 0;
         this.products.forEach(product => {
             this.total += product.sell_price * product.stock_quantity;
+            this.shippingChargesTotal += product.shippingCharge;
             this.items++; 
+            this.cartService.updateTotal(this.total);
+            this.cartService.updateShippingCharges(this.shippingChargesTotal);
         })
     }
 

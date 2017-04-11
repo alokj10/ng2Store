@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { IProduct } from '../model/product.interface';
 import { ProductService } from '../../app/services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,7 +13,8 @@ export class ViewCartComponent implements OnInit, OnDestroy{
     products: IProduct[];
     itemsCount: number;
     totalAmount: number;
-    
+    @Input() isCheckout: boolean;
+
     constructor(private productService: ProductService,
                 private cartService: CartService,
                 private router: Router){
@@ -77,5 +78,9 @@ export class ViewCartComponent implements OnInit, OnDestroy{
 
     checkout(){
         this.router.navigate(['/checkout']);
+    }
+    
+    confirmOrder(){
+        
     }
 }

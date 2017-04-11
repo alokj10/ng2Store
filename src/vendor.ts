@@ -12,3 +12,4 @@ import 'rxjs';
 import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import 'ng2-validation/bundles/ng2-validation.umd.js';

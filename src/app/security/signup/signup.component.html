@@ -1,0 +1,58 @@
+<div class="col-md-2 col-sm-hidden col-xs-hidden"></div>
+<div *ngIf="!signedup" class="col-md-6 col-sm-10 col-xs-10">
+    <form novalidate #f="ngForm" (ngSubmit)="f.form.valid && submitCredentials()">
+        <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>SignUp</h3>
+                </div>
+                <div class="panel-body">
+                        <div class="form-group">
+                            <label for="inputEmail">Email</label>
+                            <input type="text" class="form-control" 
+                            [(ngModel)]="user.email" id="inputEmail" 
+                            placeholder="Email" name="email" 
+                            #email="ngModel" email required />
+                            <div *ngIf="email.errors?.required && (email.dirty || email.touched)"
+                                class="alert alert-danger">
+                                Email is required
+                            </div>
+                            <div *ngIf="email.errors?.email && (email.dirty || email.touched)"
+                                class="alert alert-danger">
+                                Please provide a valid email id
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword">Password</label>
+                            <input name="password" type="password" class="form-control"  
+                            [(ngModel)]="user.password" id="inputPassword" placeholder="Password" 
+                            #password="ngModel" required />
+                            <div *ngIf="password.errors?.required && (password.dirty || password.touched)"
+                                class="alert alert-danger">
+                                Password is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword">Confirm Password</label>
+                            <input name="confirm_password" type="password" [(ngModel)]="user.confirm_password" 
+                            class="form-control" id="inputPassword" placeholder="Password"
+                            #cpassword="ngModel" required />
+                            <div *ngIf="cpassword.errors?.required && (cpassword.dirty || cpassword.touched)"
+                                class="alert alert-danger">
+                                Please confirm your password
+                            </div>
+                        </div>
+                </div>
+                <div class="alert-danger">{{errorMsg}}</div>
+                <div class="panel-footer">
+                    <button type="submit" [disabled]="!f.form.valid" class="btn btn-primary">Signup</button>
+                </div>
+        </div>
+    </form>
+</div>
+<div class="col-md-4 col-sm-hidden col-xs-hidden"></div>
+<div *ngIf="signedup">
+    <div class="alert alert-success">
+        <p>Account created successfully.</p>
+        <p>You will receive an email shortly to complete the signup process.</p>
+    </div>
+</div>

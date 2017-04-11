@@ -21,10 +21,10 @@
     </div>
     <div class="col-md-3 col-sm-6 col-xs-8 menu">
             <li *ngIf="!isLoggedIn">
-                <a [routerLink]="['/signup']">Signup</a>
+                <a (click)="openModal('signup')">Signup</a>
             </li>
             <li *ngIf="!isLoggedIn">
-                <a (click)="openLoginModal()">Log In</a>
+                <a (click)="openModal('login')">Log In</a>
             </li>
             <li>
                 <a [routerLink]="['/track']">Track Order</a>
@@ -61,7 +61,12 @@
 
 </div>
 
-<so-modal [(visible)]="showLoginModal" (toggleVisibility)="closeLoginModal();">
-	<so-login [redirectUrl]="['products']" (onLogin)="onLogin($event)">
-	</so-login>
+<so-modal [(visible)]="showModal" (toggleVisibility)="closeLoginModal();">
+    <div *ngIf="showLoginModal">
+        <so-login [redirectUrl]="['products']" (onLogin)="onLogin($event)">
+        </so-login>
+    </div>
+    <div *ngIf="showSignupModal">
+        <so-signup></so-signup>
+    </div>
 </so-modal>

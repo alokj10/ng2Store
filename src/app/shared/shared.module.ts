@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
+import { CustomFormsModule } from 'ng2-validation';
 
 import { ModalComponent } from './modal/modal.component';
 import { CarouselComponent } from './carousel/carousel.component';
@@ -22,7 +23,8 @@ import { ReverseSortPipe } from './pipes/reverse-sort.pipe';
         FormsModule,
         HttpModule,
         JsonpModule,
-        RouterModule
+        RouterModule,
+        CustomFormsModule
     ],
     declarations:[
         ModalComponent,

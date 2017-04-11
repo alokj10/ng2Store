@@ -4,6 +4,7 @@ import { IProduct } from '../model/product.interface';
 import { Observable} from 'rxjs';
 import { MockProducts } from '../data/mockProducts';
 import { ConfigSettings } from './configSettings.service';
+import { HttpClient } from './httpClient.service';
 
 @Injectable()
 export class ProductService{
@@ -11,7 +12,7 @@ export class ProductService{
     private apiUrl = '';
     private cartItems: IProduct[] = [];
 
-    constructor(private http: Http,
+    constructor(private http: Http, private httpClient: HttpClient,
                 private config: ConfigSettings){
         this.apiUrl = this.config.apiUrl;
     }
@@ -84,10 +85,10 @@ export class ProductService{
                    .map((res: Response) => res.json())
                    .catch(this.handleError);
     }
-
+    
     getProduct(productId: number){
           let url = this.apiUrl + 'api/products/' + productId;
-            return this.http.get(url)
+            return this.httpClient.get(url)
                             .map((res: Response) => res.json())
                             .catch(this.handleError);
     }

@@ -12,6 +12,8 @@ import { ContentHostDirective } from '../directives/content-host.directive';
 import { ProductService } from '../services/product.service';
 import { FilterService } from '../services/filter.service';
 import { LocationService } from '../services/location.service';
+import { ReviewService } from '../services/review.service';
+import { ShippingService } from '../services/shipping.service';
 import { ViewCartComponent } from '../cart/view_cart.component';
 import { AddReviewComponent } from './review/add-review.component';
 import { RateProductComponent } from './review/rate-product.component';
@@ -32,7 +34,6 @@ import { AppRoutingModule } from '../app-routing.module';
     ],
     declarations:[
         ProductListComponent,
-        // ProductItemComponent,
         ProductDetailComponent,
         AddReviewComponent,
         RateProductComponent,
@@ -42,7 +43,7 @@ import { AppRoutingModule } from '../app-routing.module';
         ContentHostDirective
     ],
     entryComponents: [ CheckboxFilterComponent ],
-    providers: [ ProductService, FilterService, LocationService ]
+    providers: [ ProductService, FilterService, LocationService, ReviewService, ShippingService ]
 })
 export class ProductModule{
 

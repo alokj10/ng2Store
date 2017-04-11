@@ -1,18 +1,45 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3>Review this product</h3>
+
+    <div class="well text-success" *ngIf="submitted">
+        You have submitted the Review successfully
     </div>
-    <div class="panel-body">
-        <form>
-            <div class="form-group">
-                <label for="inputTitle">Review Title</label>
-                <input type="text" class="form-control" id="inputTitle" placeholder="Review Title">
+    <div class="panel panel-default" *ngIf="!submitted">
+    <div class="panel-heading">
+        <button type="button" (click)="hidePanel=!hidePanel" class="btn btn-default">Rate this Product</button>
+    </div>
+    <div class="panel-body" *ngIf="hidePanel">
+
+            <div class="well">
+                <button (click)="rate(1)" type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </button>
+                <button (click)="rate(2)" type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </button>
+                <button (click)="rate(3)" type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </button>
+                <button (click)="rate(4)" type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </button>
+                <button (click)="rate(5)" type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </button>
             </div>
-            <div class="form-group">
-                <label for="inputDescription">Review Description</label>
-                <input type="text" class="form-control" id="inputDescription" placeholder="Review Description">
+            <div class="col-md-12">
+            <form #f="ngForm" (ngSubmit)="submitReviewRating()">
+                <div class="form-group">
+                    <label for="inputTitle">Review Title</label>
+                    <input type="text" class="form-control" id="inputTitle" 
+                        name="title" [(ngModel)]="model.title" placeholder="Review Title">
+                </div>
+                <div class="form-group">
+                    <label for="inputDescription">Review Description</label>
+                    <textarea class="form-control" id="inputDescription" 
+                        name="description" [(ngModel)]="model.description" 
+                        placeholder="Review Description"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+            </form>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
     </div>
 </div>

@@ -1,0 +1,14 @@
+.container-table {
+    display: table;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+.form-horizontal .control-label{
+    padding-top: 7px;
+}
+.box-item{
+    margin-left: 3%;
+    min-height: 150px;
+}

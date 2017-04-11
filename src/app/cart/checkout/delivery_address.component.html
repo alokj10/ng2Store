@@ -1,39 +1,85 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3>Delivery Address</h3>
+    <div class="row">
+        <div *ngFor="let addItem of addresses" class="well col-md-4 box-item">
+            <strong>{{addItem.name}}</strong>
+            <p>
+                {{addItem.address}}<br>
+                {{addItem.landmark}}<br>
+                {{addItem.pincode}}<br>
+                {{addItem.phone}}<br>
+            </p>
+            <p>
+                <button type="button" (click)="updateShipping(addItem)" class="btn btn-warning">Deliver Here</button>
+            </p>
+        </div>
     </div>
-    <div class="panel-body">
-        <form>
-                <div class="form-group">
-                    <label for="inputName">Name</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Name">
+    <hr/>
+    <button type="button" class="btn btn-default pull-center" (click)="openAddPopup()">Add Delivery Address</button>
+
+<so-modal [(visible)]="showModal" (toggleVisibility)="closeAddPopup();">
+    <div class="container container-table">
+        <div class="row vertical-center-row">
+            <form class="form-horizontal" #f="ngForm" (ngSubmit)="saveDeliveryAddress()">
+            <div class="text-center col-md-6 col-md-offset-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5>Delivery Address</h5>
+                    </div>
+                    <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2" for="inputName">Name</label>
+                                    <div class="col-md-10">
+                                    <input type="text" class="form-control" id="inputName" 
+                                        name="name" [(ngModel)]="model.name" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2" for="inputPincode">Pincode</label>
+                                    <div class="col-md-10">
+                                    <input type="text" class="form-control" id="inputPincode" 
+                                        name="pincode" [(ngModel)]="model.pincode" placeholder="Pincode">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2" for="inputAddress">Address</label>
+                                    <div class="col-md-10">
+                                    <textarea class="form-control" id="inputAddress" 
+                                        name="address" [(ngModel)]="model.address" placeholder="Address" row="30"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2" for="inputLandmark">Landmark</label>
+                                    <div class="col-md-10">
+                                    <input type="text" class="form-control" id="inputLandmark" 
+                                        name="landmark" [(ngModel)]="model.landmark" placeholder="Landmark">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2" for="inputCity">City</label>
+                                    <div class="col-md-10">
+                                    <input type="text" class="form-control" id="inputCity" placeholder="City">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2" for="inputState">State</label>
+                                    <div class="col-md-10">
+                                    <input type="text" class="form-control" id="inputState" placeholder="State">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2" for="inputPhone">Phone</label>
+                                    <div class="col-md-10">
+                                    <input type="text" class="form-control" id="inputPhone" 
+                                        name="phone" [(ngModel)]="model.phone" placeholder="Phone">
+                                    </div>
+                                </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button type="submit" class="btn btn-primary">Save & Continue</button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="inputPincode">Pincode</label>
-                    <input type="text" class="form-control" id="inputPincode" placeholder="Pincode">
-                </div>
-                <div class="form-group">
-                    <label for="inputAddress">Address</label>
-                    <textarea class="form-control" id="inputAddress" placeholder="Address" row="30"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="inputLandmark">Landmark</label>
-                    <input type="text" class="form-control" id="inputLandmark" placeholder="Landmark">
-                </div>
-                <div class="form-group">
-                    <label for="inputCity">City</label>
-                    <input type="text" class="form-control" id="inputCity" placeholder="City">
-                </div>
-                <div class="form-group">
-                    <label for="inputState">State</label>
-                    <input type="text" class="form-control" id="inputState" placeholder="State">
-                </div>
-                <div class="form-group">
-                    <label for="inputPhone">Phone</label>
-                    <input type="text" class="form-control" id="inputPhone" placeholder="Phone">
-                </div>
-        </form>
+            </div>
+            </form>
+        </div>
     </div>
-    <div class="panel-footer">
-         <button type="button" class="btn btn-primary" (click)="saveDeliveryAddress()">Save & Continue</button>
-    </div>
+</so-modal>
+

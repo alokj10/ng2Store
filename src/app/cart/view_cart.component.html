@@ -60,7 +60,11 @@
             </div>
             <div class="col-md-4">
                 <button class="btn btn-primary pull-right"
+                *ngIf="!isCheckout"
                 (click)="checkout()"><strong>Checkout</strong></button>
+                <button class="btn btn-primary pull-right"
+                *ngIf="isCheckout"
+                (click)="confirmOrder()"><strong>Checkout</strong></button>
             </div>
         </div>
     </div>

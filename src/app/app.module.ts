@@ -17,6 +17,7 @@ import { SiteInfoService } from './services/siteInfo.service';
 import { MenuService } from './services/menu.service';
 import { AuthenticationService } from './services/authentication.service';
 import { ConfigSettings } from './services/configSettings.service';
+import { HttpClient } from './services/httpClient.service';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { ConfigSettings } from './services/configSettings.service';
     MenuService,
     AuthenticationService,
     ConfigSettings,
+    HttpClient,
     // { provide: APP_BASE_HREF, useValue: window['_app_base'] || '/' },
     { provide: Window, useValue: window['_app_base'] }
   ]

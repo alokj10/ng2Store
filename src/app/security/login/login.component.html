@@ -1,6 +1,6 @@
 <div class="col-md-2 col-sm-hidden col-xs-hidden"></div>
 <div class="col-md-6 col-sm-10 col-xs-10">
-    <form>
+    <form #f="ngForm" (ngSubmit)="submitCredentials()">
 <div class="panel panel-default">
         <div class="panel-heading">
             <h3>Log In</h3>
@@ -20,7 +20,7 @@
         </div>
         <div class="alert-danger">{{errorMsg}}</div>
         <div class="panel-footer">
-            <button type="button" (click)="login()" class="btn btn-primary">Continue</button>
+            <button type="submit" class="btn btn-primary">{{buttonText}}</button>
         </div>
 </div>
     </form>

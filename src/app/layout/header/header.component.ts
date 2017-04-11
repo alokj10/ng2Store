@@ -10,7 +10,9 @@ import { AuthenticationService } from '../../services/authentication.service';
 export class HeaderComponent{
     siteInfo: SiteInfoService;
     _isLoggedIn: boolean;
-    private _showLoginModal: boolean = false;
+    private _showModal: boolean = false;
+    private showLoginModal: boolean = false;
+    private showSignupModal: boolean = false;
 
     constructor(public siteInfoService: SiteInfoService,
     private authenticationService: AuthenticationService){
@@ -29,20 +31,28 @@ export class HeaderComponent{
         return this._isLoggedIn;
     }
 
-    set showLoginModal(showLoginModal: boolean){
-        this._showLoginModal = showLoginModal;
+    set showModal(showModal: boolean){
+        this._showModal = showModal;
     }
 
-    get showLoginModal(): boolean{
-        return this._showLoginModal;
+    get showModal(): boolean{
+        return this._showModal;
     }
 
-    openLoginModal(){
-        this.showLoginModal = true;
+    openModal(modalName: string){
+        this.showModal = true;
+        if(modalName === 'signup'){
+            this.showSignupModal = true;
+            this.showLoginModal = false;
+        }
+        else{
+            this.showSignupModal = false;
+            this.showLoginModal = true;
+        }
     }
 
     closeLoginModal(){
-        this.showLoginModal = false;
+        this.showModal = false;
     }
     
     onLogin(loginSuccess: boolean){

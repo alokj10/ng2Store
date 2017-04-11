@@ -10,7 +10,7 @@ import { ConfigSettings } from '../../services/configSettings.service';
 })
 export class ProductItemComponent{
 
-    @Input() product: IProduct;
+    @Input() product: any;
     @Input() products: IProduct[];
 
     constructor(private router: Router,
@@ -47,6 +47,14 @@ export class ProductItemComponent{
 
     get itemsCount(){
         return this.products.length;
+    }
+
+    get ratingCountMessage(){
+        var msg = "No Ratings Yet";
+        if(this.product.reviews){
+            msg = this.product.reviews.length + ' Ratings';
+        }
+        return msg;
     }
     
     go_to_detail(product: IProduct){

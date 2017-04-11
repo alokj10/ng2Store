@@ -28,11 +28,16 @@ Referred from http://juristr.com/blog/2016/02/learning-ng2-creating-tab-componen
       .active .badge{
         background: #394;
       }
+      .step{
+        margin-top: 0px;
+        margin-left: 0px;
+      }
     </style>
     <div class="">
     <ul class="nav">
       <li *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab.active" class="itemTab">
-        <h3><span class="badge"><h4>{{tab.step}}</h4></span>  <strong>{{tab.title}}</strong></h3>
+        <h6><strong>{{tab.title}}</strong></h6>
+        <span class="step"><span class="badge">{{tab.step}}</span></span>
       </li>
     </ul>
     <ng-content></ng-content>
