@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
 @Injectable()
 export class HttpClient {
@@ -11,25 +11,36 @@ export class HttpClient {
         var token = localStorage.getItem('token');
         console.log('token - ' + token);
         if(token){
-            console.log('token - 1 - ' + token);
+            headers.append('Content-Type', 'application/json');
             headers.append('Authorization', token);
         }
-        console.log('headers - ' + headers['Authorization']);
     }
 
     get(url: string) {
+
+        // var token = localStorage.getItem('token');
+        // let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': token });
+        
         let headers = new Headers();
+        let options = new RequestOptions({ headers: headers });
         this.createAuthorizationHeader(headers);
-        return this.http.get(url, {
-        headers: headers
-        });
+        console.log('client get url - ' + url);
+        return this.http.get(url, options);
     }
 
     post(url: string, data: any) {
         let headers = new Headers();
+        let options = new RequestOptions({ headers: headers });
         this.createAuthorizationHeader(headers);
-        return this.http.post(url, data, {
-        headers: headers
-        });
+        console.log('client post data - ' + data);
+        return this.http.post(url, data, options);
+    }
+
+    delete(url: string) {
+        let headers = new Headers();
+        let options = new RequestOptions({ headers: headers });
+        this.createAuthorizationHeader(headers);
+        console.log('client delete url - ' + url);
+        return this.http.delete(url, options);
     }
 }

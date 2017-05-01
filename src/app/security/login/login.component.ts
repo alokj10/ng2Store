@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 import { User } from '../../services/authentication.service';
@@ -7,24 +7,24 @@ import { User } from '../../services/authentication.service';
     selector: 'so-login',
     templateUrl: './login.component.html',
 })
-export class LoginComponent{
+export class LoginComponent implements OnInit{
     @Input() redirectUrl: string;
     @Input() buttonText: string;
     @Output() onLogin = new EventEmitter<boolean>();
-    // public user = new User('','');
     public errorMsg = '';
     private user: any;
- 
 
-    constructor(private router: Router,
+    constructor(private router: Router, private route: ActivatedRoute,
                 private authenticationService: AuthenticationService){
         console.log('redirect url constructor: ' + this.redirectUrl);
         this.user = {};
         this.buttonText = 'Login';
-        if(this.redirectUrl == undefined)
-        {
-            this.redirectUrl = '/dashboard';
-        }
+    }
+
+    ngOnInit(){
+        this.route.params.subscribe(params => {
+            this.redirectUrl = params['redirectUrl'] || '';
+        });
     }
 
     submitCredentials(){
@@ -33,9 +33,15 @@ export class LoginComponent{
                 {
                     console.log('redirect url login success: ' + this.redirectUrl);
                     if(res === true){
+                        if(this.buttonText.indexOf('continue') === -1)
+                        {
+                            console.log('redirecting to products');
+                            this.router.navigate(['products']);
                             this.onLogin.emit(true);
-                            // this.router.navigate(['' + this.redirectUrl + '']);
-                        
+                        }
+                        else{
+                            this.onLogin.emit(true);
+                        }
                     }
                     else
                     {

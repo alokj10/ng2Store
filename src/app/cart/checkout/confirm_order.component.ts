@@ -1,42 +1,40 @@
 import { Component, Input, Output, OnInit, OnDestroy, EventEmitter } from '@angular/core';
-import { IProduct } from '../model/product.interface';
-import { ProductService } from '../../app/services/product.service';
+
+import { IProduct } from '../../model/product.interface';
+import { ProductService } from '../../../app/services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductItemComponent } from '../products/product/product-item.component';
-import { CartService } from '../../app/services/cart.service';
+import { ProductItemComponent } from '../../products/product/product-item.component';
+import { CartService } from '../../../app/services/cart.service';
 
 @Component({
-    selector: 'so-view-cart',
-    templateUrl: './view_cart.component.html'
+    selector: 'so-confirm-order',
+    templateUrl: './confirm_order.component.html'
 })
-export class ViewCartComponent implements OnInit, OnDestroy{
+export class ConfirmOrderComponent implements OnInit, OnDestroy{
     products: IProduct[];
     itemsCount: number;
     totalAmount: number;
     @Input() isCheckout: boolean = true;
-    @Output() onConfirmOrder = new EventEmitter<any>();
+    @Output() onConfirmOrder = new EventEmitter<any[]>();
+    @Output() onRemoveItem = new EventEmitter<any>();
 
     constructor(private productService: ProductService,
                 private cartService: CartService,
                 private router: Router){
                     this.cartService.isCartVisible = false;
-                console.log('view cart instantiated');
-
-                this.cartService.get_products_from_user_cart().subscribe(
-                    products => {
-                            this.products = products;
-                            this.cartService.loadCartItems(this.products);
-                            this.itemsCount = this.products.length;
-                            this.totalAmount = this.getTotal(products);
-                        },
-                        err => {
-                            console.log('error occured - ' + err);
-                        }
-                    );
-
-                }
+                 }
     
     ngOnInit(){
+        this.getProductsFromCart().subscribe(
+            products => {
+                    this.products = products;
+                    this.itemsCount = this.products.length;
+                    this.totalAmount = this.getTotal(products);
+                },
+                err => {
+                    console.log('error occured - ' + err);
+                }
+            );
         
     }
     
@@ -81,16 +79,20 @@ export class ViewCartComponent implements OnInit, OnDestroy{
         return total;
     }
     
-    removeItem(product: IProduct){
-        this.products.splice(this.products.findIndex(x => x.id == product.id),1);
-        this.cartService.remove_from_user_cart(product);
+    getProductsFromCart(){
+        return this.cartService.get_products_from_user_cart();
     }
 
-    checkout(){
-        this.router.navigate(['/checkout']);
+    removeItem(product: IProduct){
+        this.products.splice(this.products.findIndex(x => x.id == product.id),1);
+        this.cartService.remove_from_user_cart(product).subscribe(x =>{
+            this.onRemoveItem.emit(product);
+            this.cartService.recalculateTotals();
+        });
+        
     }
-    
+
     confirmOrder(){
-        this.onConfirmOrder.emit(true);
+        this.onConfirmOrder.emit(this.products);
     }
 }

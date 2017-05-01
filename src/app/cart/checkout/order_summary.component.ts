@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ViewCartComponent } from '../../cart/view_cart.component';
+import { Subscription } from 'rxjs/Subscription';
+
+import { CartService } from '../../../app/services/cart.service';
 
 @Component({
     selector: 'so-order-summary',
@@ -10,28 +12,54 @@ export class OrderSummaryComponent implements OnInit{
     @Input() totalAmount: number;
     @Input() shippingCharge: number;
     @Input() currencySymbol: string;
+    subscription: Subscription;
     totalAmountStr: string;
-
-    constructor(){
-
-    }
+    
+    constructor(private cartService: CartService){
+                    this.cartService.isCartVisible = false;
+                    this.subscription = this.cartService.payloadTotal$.subscribe((t) => this.populateOrderItems_Total(t));
+                    this.subscription = this.cartService.payloadShippingTotal$.subscribe((s) => this.populateOrderItems_Shipping(s));
+             }
 
     ngOnInit(){
-        this.populateOrderItems();
+        this.populateOrderItems_Total(this.totalAmount ? this.totalAmount : 0);
+        this.populateOrderItems_Shipping(this.shippingCharge ? this.shippingCharge : 0);
     }
 
-    populateOrderItems(){
-        let orderItem: any = {};
-        orderItem.label = 'Order Subtotal';
-        orderItem.amount = this.currencySymbol + ' ' + this.totalAmount;
-        this.orderItems.push(orderItem);
-        orderItem = {}; 
-        orderItem.label = 'Shipping';
-        orderItem.amount = this.shippingCharge === 0 ? 'FREE' : this.currencySymbol + ' ' + this.shippingCharge;
-        this.orderItems.push(orderItem);
-
-        let totAmt = this.totalAmount + this.shippingCharge;
+    populateOrderItems_Total(total: number){
+        this.totalAmount = total;
+        var subtotalItem = this.orderItems.find(x => x.label === 'Order Subtotal');
+        if(!subtotalItem){
+            let orderItem: any = {};
+            orderItem.label = 'Order Subtotal';
+            orderItem.amount = this.currencySymbol + ' ' + total;
+            this.orderItems.push(orderItem);
+        }
+        else{
+            subtotalItem.amount = this.currencySymbol + ' ' + total;
+        }
+        let totAmt = total + (this.shippingCharge ? this.shippingCharge : 0);
         this.totalAmountStr = this.currencySymbol + ' ' + totAmt;
+    }
+
+    populateOrderItems_Shipping(shipping: number){
+        this.shippingCharge = shipping;
+        var shippingItem =  this.orderItems.find(x => x.label === 'Shipping');
+        if(!shippingItem){
+            let orderItem: any = {};
+            orderItem.label = 'Shipping';
+            orderItem.amount = shipping === 0 ? 'FREE' : this.currencySymbol + ' ' + shipping;
+            this.orderItems.push(orderItem);
+        }
+        else{
+            shippingItem.amount = shipping === 0 ? 'FREE' : this.currencySymbol + ' ' + shipping;
+        }
+        let totAmt = (this.totalAmount ? this.totalAmount : 0) + shipping;
+        this.totalAmountStr = this.currencySymbol + ' ' + totAmt;
+    }
+
+    updateTotal(amount: number){
+
     }
 
 }

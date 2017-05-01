@@ -1,5 +1,17 @@
-    <button type="button" class="btn btn-lg btn-primary">Paypal</button>
+    <div class="well">
+        Pay Rs. {{order_amount + shipping_amount}}
+        <!--<button (click)="payWithPaypal()" type="button" class="btn btn-lg btn-primary">Pay with Paypal</button>-->
+    </div>
+    
+    <div id="myPay"></div>
+    
+    <!--
+    <div *ngFor="let msg of msgs" class="alert alert-success">
+    {{msg.text}}
+    </div>
     <button type="button" class="btn btn-lg btn-primary">Credit Card</button>
+    <input [(ngModel)]="message" type="text"/>
+    <button class="btn btn-default" id="i1" type="button">Send</button>
     <button type="button" class="btn btn-lg btn-primary">Debit Card</button>
     <button type="button" class="btn btn-lg btn-primary">Net Banking</button>
-    <button type="button" class="btn btn-lg btn-primary">Cash On delivery</button>
+    <button type="button" class="btn btn-lg btn-primary">Cash On delivery</button>-->

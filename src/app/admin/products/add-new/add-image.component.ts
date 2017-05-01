@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 
 import { FilterService } from '../../../services/filter.service';
+import { ConfigSettings } from '../../../services/configSettings.service';
 
 @Component({
     selector:   'so-add-image',
@@ -9,10 +10,15 @@ import { FilterService } from '../../../services/filter.service';
 })
 export class AddImageComponent{
     @Input()productId: number;
-    public uploader:FileUploader = new FileUploader({url:'http://localhost:9000/api/products/upload'});
+    private apiUrl: string = '';
+    // public uploader:FileUploader = new FileUploader({url:'http://localhost:9000/api/products/upload'});
+    public uploader: FileUploader;
     
-    constructor(){
-        
+    constructor(private config: ConfigSettings){
+        this.apiUrl = config.apiUrl + 'api/products/upload';
+        this.uploader = new FileUploader({
+                                            url:this.apiUrl
+                                        });
     }
 
     ngOnInit() {

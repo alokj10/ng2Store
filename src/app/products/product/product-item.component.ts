@@ -22,18 +22,15 @@ export class ProductItemComponent{
                 }
 
     get img_url(): string{
-        // return this.win + this.product.img_url;
         return this.config.apiUrl + this.product.img_url;
     }
 
     get subTotal(): number{
-        return this.product.sell_price * this.product.stock_quantity;
-        // return 1000;
+        return this.product.sell_price * this.quantity;
     }    
 
     get price(): number{
         return this.product.sell_price;
-        // return 1000;
     }    
 
     get stock_quantity(): number{
@@ -42,7 +39,24 @@ export class ProductItemComponent{
 
     set stock_quantity(qty){
         this.product.stock_quantity = qty;
-        console.log(qty);
+    }
+    
+    get shippingChargeText(): string{
+        if(!this.product.shippingCharge){
+            return "FREE";
+        }
+        return 'INR ' + this.product.shippingCharge;
+    }
+    
+    get quantity(): number{
+        if(!this.product.quantity){
+            this.product.quantity = 1;
+        }
+        return this.product.quantity;
+    }
+
+    set quantity(qty){
+        this.product.quantity = qty;
     }
 
     get itemsCount(){

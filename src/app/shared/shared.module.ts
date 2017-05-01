@@ -14,6 +14,7 @@ import { ControlButtonComponent } from './control-button/control-button.componen
 import { ProductOptionsComponent } from './product-option/product-option.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { SubmenuComponent } from './menu/submenu.component';
+import { RedirectComponent } from './redirect.component';
 
 import { ReverseSortPipe } from './pipes/reverse-sort.pipe';
 
@@ -36,7 +37,8 @@ import { ReverseSortPipe } from './pipes/reverse-sort.pipe';
         ProductOptionsComponent,
         ReverseSortPipe,
         SubmenuComponent,
-        SideMenuComponent
+        SideMenuComponent,
+        RedirectComponent
     ],
     exports:[
         CommonModule,

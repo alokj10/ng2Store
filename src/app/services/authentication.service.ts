@@ -28,6 +28,9 @@ export class AuthenticationService {
 
     private handleError(error: any): Observable<any>{
         console.error('An error occurred', error);
+        if(error.status === 401){
+          this.router.navigate(['login']);
+        }
         return Observable.throw(error.json().error || 'server error');
     }
 

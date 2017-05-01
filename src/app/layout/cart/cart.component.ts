@@ -37,6 +37,14 @@ export class CartComponent implements OnInit, OnDestroy{
     }
     
     ngOnInit(){
+        this.cartService.get_products_from_user_cart().subscribe(
+            products => {
+                    this.products = products;
+                    this.cartService.loadCartItems(this.products);
+                    this.calculateTotal();
+                }
+            );
+
     }
 
     get viewMsg(){
@@ -55,20 +63,26 @@ export class CartComponent implements OnInit, OnDestroy{
     }
     
     add_to_user_cart(product: IProduct){
-        //this.products.push(product);
-        this.productService.add_to_user_cart(product);
-        
-        this.productService.get_products_from_user_cart().then(
+        this.products.push(product);
+        this.calculateTotal();
+        this.cartService.add_to_user_cart(product).subscribe(
             products => {
-                    this.products = products;
-                    this.calculateTotal();
-                }
-            );
+                // this.cartService.get_products_from_user_cart().subscribe(
+                //     products => {
+                //             this.products = products;
+                //             this.calculateTotal();
+                //         }
+                //     );
+            },
+            err => {
+                console.log('error occured - ' + err);
+            });
+        
     }
     
     removeItem(product: IProduct){
-        this.productService.remove_from_user_cart(product);
-        this.productService.get_products_from_user_cart().then(
+        this.cartService.remove_from_user_cart(product);
+        this.cartService.get_products_from_user_cart().subscribe(
             products => {
                     this.products = products;
                     this.calculateTotal();
@@ -77,15 +91,19 @@ export class CartComponent implements OnInit, OnDestroy{
     }
 
     calculateTotal(){
-        this.total = 0;
+        // this.total = 0;
         this.items = 0;
         this.products.forEach(product => {
-            this.total += product.sell_price * product.stock_quantity;
-            this.shippingChargesTotal += product.shippingCharge;
+            // if(!product.quantity){
+            //     product.quantity = 1;
+            // }
+            // this.total += product.sell_price * product.quantity;
+            // this.shippingChargesTotal += product.shippingCharge;
             this.items++; 
-            this.cartService.updateTotal(this.total);
-            this.cartService.updateShippingCharges(this.shippingChargesTotal);
-        })
+            // this.cartService.updateTotal(this.total);
+            // this.cartService.updateShippingCharges(this.shippingChargesTotal);
+        });
+        this.cartService.recalculateTotals();
     }
 
     ngOnDestroy(){

@@ -60,10 +60,10 @@ export class SignupComponent{
             this.errorMsg = 'Both passwords do not match';
             return;
         }
-        var regexp = new RegExp('^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
-        if(!regexp.test(this.user.email)){
-            this.errorMsg = 'Please enter valid email id';
-            return;
-        }
+        // var regexp = new RegExp('^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
+        // if(!regexp.test(this.user.email)){
+        //     this.errorMsg = 'Please enter valid email id';
+        //     return;
+        // }
     }
 }

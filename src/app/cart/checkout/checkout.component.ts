@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, ViewChild } from '@angular/core';
 
 import { TabsComponent } from '../../shared/tabs/tabs.component';
 import { TabComponent } from '../../shared/tabs/tab.component';
@@ -15,6 +15,8 @@ import { CartService } from '../../services/cart.service';
 export class CheckoutComponent implements OnInit{
     ctabs: TabComponent[] = [];
     private tItem: TabComponent;
+    productsToPayFor: any[];
+    @ViewChild(OrderSummaryComponent)orderSummaryComponent: OrderSummaryComponent;
 
     constructor(private authenticationService: AuthenticationService,
                 private cartService: CartService){
@@ -60,6 +62,8 @@ export class CheckoutComponent implements OnInit{
             console.log('activate shipping - ' + this.deliveryActive);
             this.deliveryActive = true;
             console.log('activate shipping - ' + this.deliveryActive);
+             this.cartService.recalculateTotals();
+             this.totalAmount = this.cartService.totalAmount;
         }
         else if(tab === 'order')
         {
@@ -84,16 +88,27 @@ export class CheckoutComponent implements OnInit{
         this.setTabActive('order');
     }
 
-    onConfirmOrder(){
+    onConfirmOrder(products: any[]){
+        this.productsToPayFor = products;
         this.setTabActive('payment');
+    }
+
+    onRemoveProduct(product: any){
+        this.cartService.recalculateTotals();
+        this.totalAmount = this.cartService.totalAmount;
+        this.orderSummaryComponent.populateOrderItems_Total(this.totalAmount);
     }
 
     onSavePayment(){
         
     }
 
+    private _totalAmount: number;
+    set totalAmount(totAmount: number){
+        this._totalAmount = totAmount;
+    }
     get totalAmount(){
-        return this.cartService.totalAmount;
+        return this._totalAmount;
     }
 
     get shippingCharge(){

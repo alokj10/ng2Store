@@ -15,6 +15,7 @@ export interface IProduct{
     img_url: string;
     Available: number;
     stock_quantity: number;
+    quantity: number;
     shippingCharge: number;
     Features: string[];
     Specifications: ISpecification[];

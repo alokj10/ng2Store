@@ -28,7 +28,7 @@ export class HeaderComponent{
     }
 
     get isLoggedIn(): boolean{
-        return this._isLoggedIn;
+        return this.authenticationService.IsLoggedIn;
     }
 
     set showModal(showModal: boolean){

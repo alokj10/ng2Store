@@ -5,33 +5,39 @@ import { Observable} from 'rxjs';
 import { MockProducts } from '../data/mockProducts';
 import { ConfigSettings } from './configSettings.service';
 import { HttpClient } from './httpClient.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable()
 export class ProductService{
 
     private apiUrl = '';
-    private cartItems: IProduct[] = [];
+    // private cartItems: IProduct[] = [];
 
     constructor(private http: Http, private httpClient: HttpClient,
-                private config: ConfigSettings){
-        this.apiUrl = this.config.apiUrl;
+                private config: ConfigSettings,
+                private router: Router,private route: ActivatedRoute
+                     ){
+       this.apiUrl = this.config.apiUrl;
     }
 
-    private handleError(error: any): Observable<any>{
+    private handleError(obj: any, error: any): Observable<any>{
         console.error('An error occurred', error);
+        if(error.status === 401){
+           obj.router.navigate(['/login']);
+        }
         return Observable.throw(error.json().error || 'server error');
     }
 
     getProducts(): Observable<IProduct[]>{
         let url = this.apiUrl + 'api/products/active';
-        return this.http.get(url)
+        return this.httpClient.get(url)
                    .map((res: Response) => res.json() as IProduct[])
-                   .catch(this.handleError);
+                   .catch(e => this.handleError(this, e));
     }
 
     getAllProducts(): Observable<IProduct[]>{
         let url = this.apiUrl + 'api/products';
-        return this.http.get(url)
+        return this.httpClient.get(url)
                    .map((res: Response) => res.json() as IProduct[])
                    .catch(this.handleError);
     }
@@ -90,7 +96,7 @@ export class ProductService{
           let url = this.apiUrl + 'api/products/' + productId;
             return this.httpClient.get(url)
                             .map((res: Response) => res.json())
-                            .catch(this.handleError);
+                            .catch(e => this.handleError(this,e));
     }
 
     getProductByCategory(categoryId: number){
@@ -100,33 +106,33 @@ export class ProductService{
                             .catch(this.handleError);
     }
     
-    add_to_user_cart(product: IProduct){
-        console.log("adding to cart - 1");
-        if(!this.cartItems.find(x => x.id == product.id))
-        {
-            this.cartItems.push(product);
-        }
-        else{
-            var curQty = this.cartItems.find(x => x.id == product.id).stock_quantity;
-            this.cartItems.find(x => x.id == product.id).stock_quantity = curQty+1;
-        }
-    }
+    // add_to_user_cart(product: IProduct){
+    //     console.log("adding to cart - 1");
+    //     if(!this.cartItems.find(x => x.id == product.id))
+    //     {
+    //         this.cartItems.push(product);
+    //     }
+    //     else{
+    //         var curQty = this.cartItems.find(x => x.id == product.id).quantity;
+    //         this.cartItems.find(x => x.id == product.id).quantity = curQty+1;
+    //     }
+    // }
 
-    remove_from_user_cart(product: IProduct){
-        console.log("removing from  cart - 1");
-        if(!this.cartItems.find(x => x.id == product.id))
-        {
-            console.log('item not in the cart');
-        }
-        else{
-            this.cartItems.splice(this.cartItems.findIndex(x => x.id == product.id),1);
-        }
-    }
+    // remove_from_user_cart(product: IProduct){
+    //     console.log("removing from  cart - 1");
+    //     if(!this.cartItems.find(x => x.id == product.id))
+    //     {
+    //         console.log('item not in the cart');
+    //     }
+    //     else{
+    //         this.cartItems.splice(this.cartItems.findIndex(x => x.id == product.id),1);
+    //     }
+    // }
      
-    get_products_from_user_cart(){
-        console.log('items in cart - ' + this.cartItems.length);
-        return Promise.resolve(this.cartItems);
-    }
+    // get_products_from_user_cart(){
+    //     console.log('items in cart - ' + this.cartItems.length);
+    //     return Promise.resolve(this.cartItems);
+    // }
 
     getProductsByBrand(brandNames: string[]): IProduct[]{
         let filteredProducts: IProduct[] = [];

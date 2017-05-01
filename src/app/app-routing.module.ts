@@ -5,7 +5,12 @@ import { ProductListComponent } from './products/product-list.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { ViewCartComponent } from './cart/view_cart.component';
 import { CheckoutComponent } from './cart/checkout/checkout.component';
+// import { PaymentResultComponent } from './cart/checkout/payment_result.component';
 import { ProductDetailComponent } from './products/product/prod_detail.component';
+
+import { LoginComponent } from './security/login/login.component'
+import { SignupComponent } from './security/signup/signup.component'
+import { RedirectComponent } from './shared/redirect.component'
 
 // import { ViewOrdersComponent } from './admin/orders/view-orders.component';
 // import { ViewProductsComponent } from './admin/products/view-products.component';
@@ -21,8 +26,11 @@ export const routes: Routes = [
     { path:'viewcart', component: ViewCartComponent },
     { path:'checkout', component: CheckoutComponent },
     { path:'admin', loadChildren: './admin/admin.module#AdminModule' },
-    // { path:'admin/products', component: ViewProductsComponent },
-    // { path:'admin/products/new', component: AddNewProductComponent },
+    { path:'login', component: LoginComponent },
+    { path:'signup', component: SignupComponent },
+    { path:'redirect', component: RedirectComponent },
+    { path:'redirect/:url', component: RedirectComponent },
+    // { path:'payment_result', component: PaymentResultComponent },
     // { path:'admin/categories', component: CategoryMainComponent },
     // { path:'admin/categories/new', component: AddCategoryComponent },
     { path: '', redirectTo: 'products', pathMatch: 'full' },
