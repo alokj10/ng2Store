@@ -81,9 +81,18 @@ export class ViewCartComponent implements OnInit, OnDestroy{
         return total;
     }
     
-    removeItem(product: IProduct){
-        this.products.splice(this.products.findIndex(x => x.id == product.id),1);
-        this.cartService.remove_from_user_cart(product);
+    removeItem(product: any){
+        // this.products.splice(this.products.findIndex(x => x.id == product.id),1);
+        // this.cartService.remove_from_user_cart(product);
+        this.cartService.remove_from_user_cart(product.uc_id)
+            .subscribe(p => {
+                    this.cartService.get_products_from_user_cart().subscribe(
+                        products => {
+                                this.products = products;
+                                // this.calculateTotal();
+                            }
+                        );
+                });
     }
 
     checkout(){

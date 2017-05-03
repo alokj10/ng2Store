@@ -17,6 +17,7 @@ export class PaymentMethodComponent implements OnInit, OnDestroy, AfterViewInit{
     @Input() productsToPayFor: any[];
     @Input() order_amount: number;
     @Input() shipping_amount: number;
+    private shipping_address: any;
 
     private socket: any;
     private connection: any;
@@ -55,12 +56,20 @@ export class PaymentMethodComponent implements OnInit, OnDestroy, AfterViewInit{
         
     }
 
+    setShippingAddress(address: any) {
+        this.shipping_address = address;
+        console.log('addr id  - ', this.shipping_address.id);
+    }
+
     renderByTs(obj: any) {
         var ctl = document.getElementById("myPay");
         let data: any = {};
-        data.items_list = this.productsToPayFor;
-        data.order_amount = this.order_amount;
-        data.shipping_amount = this.shipping_amount;
+        data.items_list = obj.productsToPayFor;
+        data.order_amount = obj.order_amount;
+        data.shipping_amount = obj.shipping_amount;
+
+        console.log('addr id  - ', obj.shipping_address);
+        console.log('amt - ' + data.order_amount);
 
         paypal.Button.render({
             env: 'sandbox',
@@ -68,7 +77,8 @@ export class PaymentMethodComponent implements OnInit, OnDestroy, AfterViewInit{
                 obj.paymentService.createPayment(data)
                     .subscribe((res: any) => {
                         console.log('payment id - ' + res.paymentID);
-                        resolve(res.paymentID)
+                        resolve(res.paymentID);
+                        // obj.router.navigate(['/redirect',{ purpose: 'placeorder' }]);
                     },
                     (err: any) => {
                         console.log('error occured - ' + err);
@@ -83,10 +93,15 @@ export class PaymentMethodComponent implements OnInit, OnDestroy, AfterViewInit{
                 let execData: any = {};
                 execData.paymentID = data.paymentID;
                 execData.payerID = data.payerID;
-
+                execData.shippingAddressId = obj.shipping_address.id;
+                
+                
                 obj.paymentService.executePayment(execData)
                     .subscribe((res: any) => {
-                        console.log('success payment execute');
+                        if(res.status === 'success') {
+                            console.log('success payment execute orderid - ' + res.order.id);
+                            obj.router.navigate(['/payment_result',{ purpose: 'placeorder', orderId: res.order.id }]);
+                        }
                     },
                     (err: any) => {
                         console.log('fail payment execute');

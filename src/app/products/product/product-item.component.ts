@@ -75,12 +75,14 @@ export class ProductItemComponent{
         this.router.navigate(['/detail', product.id]);
     }
     
-    add_to_cart(product: IProduct){
-        this.cartService.add_to_cart(product);
+    add_to_cart(){
+        this.product.quantity = this.quantity;
+        this.product.price = this.price;
+        this.cartService.add_to_cart(this.product);
     }
 
-    buy_now(product: IProduct){
-        this.cartService.add_to_cart(product);
+    buy_now(){
+        this.cartService.add_to_cart(this.product);
         this.router.navigate(['/checkout']);
     }
 

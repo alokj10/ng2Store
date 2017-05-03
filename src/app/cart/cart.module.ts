@@ -22,7 +22,8 @@ import { PaymentResultComponent } from './checkout/payment_result.component';
         DeliveryAddressComponent,
         ConfirmOrderComponent,
         OrderSummaryComponent,
-        PaymentMethodComponent
+        PaymentMethodComponent,
+        PaymentResultComponent
     ]
 })
 export class CartModule{

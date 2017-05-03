@@ -83,9 +83,9 @@ export class ConfirmOrderComponent implements OnInit, OnDestroy{
         return this.cartService.get_products_from_user_cart();
     }
 
-    removeItem(product: IProduct){
+    removeItem(product: any){
         this.products.splice(this.products.findIndex(x => x.id == product.id),1);
-        this.cartService.remove_from_user_cart(product).subscribe(x =>{
+        this.cartService.remove_from_user_cart(product.uc_id).subscribe(x =>{
             this.onRemoveItem.emit(product);
             this.cartService.recalculateTotals();
         });

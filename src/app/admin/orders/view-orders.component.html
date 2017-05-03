@@ -15,7 +15,7 @@
                     <h4>Total Amount</h4>
                 </div>
                 <div class="col-md-2">
-                    <h4>Seller</h4>
+                    <h4>Shipping</h4>
                 </div>
                 <div class="col-md-2">
                     <h4>Status</h4>
@@ -28,19 +28,19 @@
         <li *ngFor="let order_item of order_items" class="list-group-item">
             <div class="row">
                 <div class="col-md-2">
-                    <p class="grid-col">{{order_item.OrderDate}}</p>
+                    <p class="grid-col">{{order_item.order_date}}</p>
                 </div>
                 <div class="col-md-2">
-                    <p class="grid-col">{{order_item.CustomerName}}</p>
+                    <p class="grid-col">{{order_item.shipping_for}}</p>
                 </div>
                 <div class="col-md-2">
-                    <p class="grid-col">{{order_item.OrderTotal}}</p>
+                    <p class="grid-col">{{order_item.amount_paid}}</p>
                 </div>
                 <div class="col-md-2">
-                    <p class="grid-col">{{order_item.SellerName}}</p>
+                    <p class="grid-col">{{order_item.shipping_address}}</p>
                 </div>
                 <div class="col-md-2">
-                    <p class="grid-col">{{order_item.OrderStatus}}</p>
+                    <p class="grid-col">{{order_item.status}}</p>
                 </div>
                 <div class="col-md-2">
                 </div>

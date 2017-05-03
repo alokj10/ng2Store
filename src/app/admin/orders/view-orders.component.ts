@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IOrder } from '../../model/order.interface';
 import { OrderService } from '../../services/order.service';
 
@@ -7,11 +7,21 @@ import { OrderService } from '../../services/order.service';
     templateUrl:    './view-orders.component.html',
     styleUrls:  ['./view-orders.component.css']   
 })
-export class ViewOrdersComponent{
+export class ViewOrdersComponent implements OnInit{
     order_items: IOrder[];
 
     constructor(private orderService: OrderService){
         console.log('view orders');
-        orderService.getOrders().then(o => this.order_items = o);
+        
+    }
+
+    ngOnInit() {
+        this.orderService.getPendingOrders()
+                    .subscribe(res => {
+                        this.order_items = res;
+                    },
+                    err => {
+                        console.log('error occured - ' + err);
+                    });
     }
 }

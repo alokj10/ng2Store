@@ -1,32 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { Observable} from 'rxjs';
+
 import { IOrder } from  '../model/order.interface';
+import { ConfigSettings } from './configSettings.service';
+import { HttpClient } from './httpClient.service';
 
 @Injectable()
 export class OrderService{
-    private apiUrl: string = 'api/orders';
+    private apiUrl: string ;
     private orders: IOrder[];
 
-    constructor(private http: Http){
+    constructor(private http: HttpClient,
+                private config: ConfigSettings){
+                    this.apiUrl = config.apiUrl;
+                }
 
-    }
-
-    private handleError(error: any): Promise<any>{
+    private handleError(error: any): Observable<any>{
         console.error('An error occurred', error);
-        return Promise.reject(error.message || error);
+        return Observable.throw(error.json().error || 'server error');
     }
 
-    getOrders(): Promise<IOrder[]>{
-                return this.http.get(this.apiUrl)
-                   .toPromise()
-                   .then(response => response.json().data as IOrder[])
-                   .catch(this.handleError);
+    getPendingOrders(): Observable<any[]>{
+        let url = this.apiUrl + 'api/orders/pending';
+        return this.http.get(url)
+            .map((res: Response) => res.json())
+            .catch(this.handleError);
     }
 
-    // getOrderById(id: number): IOrder{
-    //   return this.getOrders().then(orders => orders.find(order => order.Id === id));
-
-    // }
+    getOrderById(orderId: number): Observable<any>{
+      let url = this.apiUrl + 'api/orders/' + orderId;
+      return this.http.get(url)
+                    .map((res: Response) => res.json())
+                    .catch(this.handleError);
+    }
 
 }

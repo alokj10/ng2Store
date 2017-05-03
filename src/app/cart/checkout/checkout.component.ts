@@ -17,6 +17,7 @@ export class CheckoutComponent implements OnInit{
     private tItem: TabComponent;
     productsToPayFor: any[];
     @ViewChild(OrderSummaryComponent)orderSummaryComponent: OrderSummaryComponent;
+    @ViewChild(PaymentMethodComponent)paymentMethodComponent: PaymentMethodComponent;
 
     constructor(private authenticationService: AuthenticationService,
                 private cartService: CartService){
@@ -85,6 +86,7 @@ export class CheckoutComponent implements OnInit{
 
     onSaveDeliveryAddress(shippingAddress: any){
         console.log('del called');
+        this.paymentMethodComponent.setShippingAddress(shippingAddress);
         this.setTabActive('order');
     }
 

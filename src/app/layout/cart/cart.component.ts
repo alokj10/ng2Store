@@ -80,14 +80,16 @@ export class CartComponent implements OnInit, OnDestroy{
         
     }
     
-    removeItem(product: IProduct){
-        this.cartService.remove_from_user_cart(product);
-        this.cartService.get_products_from_user_cart().subscribe(
-            products => {
-                    this.products = products;
-                    this.calculateTotal();
-                }
-            );
+    removeItem(product: any){
+        this.cartService.remove_from_user_cart(product.uc_id)
+            .subscribe(p => {
+                    this.cartService.get_products_from_user_cart().subscribe(
+                        products => {
+                                this.products = products;
+                                this.calculateTotal();
+                            }
+                        );
+                });
     }
 
     calculateTotal(){

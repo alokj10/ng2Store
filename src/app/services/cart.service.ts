@@ -10,7 +10,7 @@ import { ConfigSettings } from './configSettings.service';
 @Injectable()
 export class CartService{
     public isCartVisible: boolean = true;
-    private cartItems: IProduct[] = [];
+    private cartItems: any[] = [];
     private payload = new Subject<IProduct>();
     private payloadTotal = new Subject<number>();
     private payloadShippingTotal = new Subject<number>();
@@ -83,8 +83,7 @@ export class CartService{
         console.log("adding to cart - 1");
         if(!this.cartItems.find(x => x.id == data.id))
         {
-            this.cartItems.push(data);
-            // data = JSON.stringify(data);
+            // this.cartItems.push(data);
             console.log('post - ' + data);
 
             return this.http.post(this.apiUrl + 'api/cart', data)
@@ -97,18 +96,18 @@ export class CartService{
         }
     }
     
-    remove_from_user_cart(product: any): Observable<any>{
+    remove_from_user_cart(uc_id: number): Observable<any>{
         console.log("removing from  cart - 1");
-        if(!this.cartItems.find(x => x.id == product.id))
-        {
-            console.log('item not in the cart');
-        }
-        else{
-            this.cartItems.splice(this.cartItems.findIndex(x => x.id == product.id),1);
-            return this.http.delete(this.apiUrl + 'api/cart/' + product.id)
+        // if(!this.cartItems.find(x => x.id == product.id))
+        // {
+        //     console.log('item not in the cart');
+        // }
+        // else{
+            // this.cartItems.splice(this.cartItems.findIndex(x => x.id == product.id),1);
+            return this.http.delete(this.apiUrl + 'api/cart/' + uc_id)
                             .map((res: Response) => res.json())
                             .catch(this.handleError);
-        }
+        // }
     }
           
     get_products_from_user_cart(){
@@ -116,7 +115,10 @@ export class CartService{
         let url = this.apiUrl + 'api/cart/my';
         console.log('cart items for user - ' + url);
         return this.http.get(url)
-                        .map((res: Response) => res.json())
+                        .map((res: Response) => {
+                            this.cartItems = res.json();
+                            return res.json();
+                        })
                         .catch(this.handleError);
     }
 
